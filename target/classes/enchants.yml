@@ -1,0 +1,265 @@
+#static Enchantment
+#ARROW_DAMAGE
+#Provides extra damage when shooting arrows from bows
+#static Enchantment
+#ARROW_FIRE
+#Sets entities on fire when hit by arrows shot from a bow
+#static Enchantment
+#ARROW_INFINITE
+#Provides infinite arrows when shooting a bow
+#static Enchantment
+#ARROW_KNOCKBACK
+#Provides a knockback when an entity is hit by an arrow from a bow
+#static Enchantment
+#BINDING_CURSE
+#Item cannot be removed
+#static Enchantment
+#CHANNELING
+#Strikes lightning when a mob is hit with a trident if conditions are stormy
+#static Enchantment
+#DAMAGE_ALL
+#Increases damage against all targets
+#static Enchantment
+#DAMAGE_ARTHROPODS
+#Increases damage against arthropod targets
+#static Enchantment
+#DAMAGE_UNDEAD
+#Increases damage against undead targets
+#static Enchantment
+#DEPTH_STRIDER
+#Increases walking speed while in water
+#static Enchantment
+#DIG_SPEED
+#Increases the rate at which you mine/dig
+#static Enchantment
+#DURABILITY
+#Decreases the rate at which a tool looses durability
+#static Enchantment
+#FIRE_ASPECT
+#When attacking a target, has a chance to set them on fire
+#static Enchantment
+#FROST_WALKER
+#Freezes any still water adjacent to ice / frost which player is walking on
+#static Enchantment
+#IMPALING
+#Deals more damage to mobs that live in the ocean
+#static Enchantment
+#KNOCKBACK
+#All damage to other targets will knock them back when hit
+#static Enchantment
+#LOOT_BONUS_BLOCKS
+#Provides a chance of gaining extra loot when destroying blocks
+#static Enchantment
+#LOOT_BONUS_MOBS
+#Provides a chance of gaining extra loot when killing monsters
+#static Enchantment
+#LOYALTY
+#Causes a thrown trident to return to the player who threw it
+#static Enchantment
+#LUCK
+#Decreases odds of catching worthless junk
+#static Enchantment
+#LURE
+#Increases rate of fish biting your hook
+#static Enchantment
+#MENDING
+#Allows mending the item using experience orbs
+#static Enchantment
+#MULTISHOT
+#Shoot multiple arrows from crossbows
+#static Enchantment
+#OXYGEN
+#Decreases the rate of air loss whilst underwater
+#static Enchantment
+#PIERCING
+#Crossbow projectiles pierce entities
+#static Enchantment
+#PROTECTION_ENVIRONMENTAL
+#Provides protection against environmental damage
+#static Enchantment
+#PROTECTION_EXPLOSIONS
+#Provides protection against explosive damage
+#static Enchantment
+#PROTECTION_FALL
+#Provides protection against fall damage
+#static Enchantment
+#PROTECTION_FIRE
+#Provides protection against fire damage
+#static Enchantment
+#PROTECTION_PROJECTILE
+#Provides protection against projectile damage
+#static Enchantment
+#QUICK_CHARGE
+#Charges crossbows quickly
+#static Enchantment
+#RIPTIDE
+#When it is rainy, launches the player in the direction their trident is thrown
+#static Enchantment
+#SILK_TOUCH
+#Allows blocks to drop themselves instead of fragments (for example, stone instead of cobblestone)
+#static Enchantment
+#SOUL_SPEED
+#Walk quicker on soul blocks
+#static Enchantment
+#SWEEPING_EDGE
+#Increases damage against targets when using a sweep attack
+#static Enchantment
+#THORNS
+#Damages the attacker
+#static Enchantment
+#VANISHING_CURSE
+#Item disappears instead of dropping
+#static Enchantment
+#WATER_WORKER
+#Increases the speed at which a player may mine underwater
+
+enchants:
+  CHESTPLATE:
+    generic: true
+    exclude: 
+      - "GOLDEN_CHESTPLATE"
+      - "LEATHER_CHESTPLATE"
+    enchantments:
+      PROTECTION_ENVIRONMENTAL:
+        maxlevel: 4
+        startingprice: 2
+      PROTECTION_PROJECTILE:
+        maxlevel: 4
+        startingprice: 1
+      PROTECTION_FIRE:
+        maxlevel: 4
+        startingprice: 1
+      PROTECTION_EXPLOSIONS:
+        maxlevel: 4
+        startingprice: 1
+  GOLDEN_CHESTPLATE:
+    generic: false
+    enchantments:
+      PROTECTION_ENVIRONMENTAL:
+        maxlevel: 4
+        startingprice: 2
+      THORNS:
+        maxlevel: 3
+        startingprice: 2
+      PROTECTION_PROJECTILE:
+        maxlevel: 4
+        startingprice: 1
+      PROTECTION_FIRE:
+        maxlevel: 4
+        startingprice: 1
+      PROTECTION_EXPLOSIONS:
+        maxlevel: 4
+        startingprice: 1
+  LEGGINGS:
+    generic: true
+    exclude: 
+      - "GOLDEN_LEGGINGS"
+      - "LEATHER_LEGGINGS"
+    enchantments:
+      PROTECTION_ENVIRONMENTAL:
+        maxlevel: 4
+        startingprice: 2
+      PROTECTION_PROJECTILE:
+        maxlevel: 4
+        startingprice: 1
+      PROTECTION_FIRE:
+        maxlevel: 4
+        startingprice: 1
+      PROTECTION_EXPLOSIONS:
+        maxlevel: 4
+        startingprice: 1 
+  GOLDEN_LEGGINGS:
+    generic: false
+    enchantments:
+      PROTECTION_ENVIRONMENTAL:
+        maxlevel: 4
+        startingprice: 2
+      THORNS:
+        maxlevel: 3
+        startingprice: 2
+      PROTECTION_PROJECTILE:
+        maxlevel: 4
+        startingprice: 1
+      PROTECTION_FIRE:
+        maxlevel: 4
+        startingprice: 1
+      PROTECTION_EXPLOSIONS:
+        maxlevel: 4
+        startingprice: 1
+  BOOTS:
+    generic: true
+    exclude: 
+      - "GOLDEN_BOOTS"
+      - "LEATHER_BOOTS"
+    enchantments:
+      PROTECTION_ENVIRONMENTAL:
+        maxlevel: 4
+        startingprice: 2
+      PROTECTION_PROJECTILE:
+        maxlevel: 4
+        startingprice: 1
+      PROTECTION_FIRE:
+        maxlevel: 4
+        startingprice: 1
+      PROTECTION_EXPLOSIONS:
+        maxlevel: 4
+        startingprice: 1
+      PROTECTION_FALL:
+        maxlevel: 4
+        startingprice: 1
+      DEPTH_STRIDER:
+        maxlevel: 4
+        startingprice: 1
+        
+  GOLDEN_BOOTS:
+    generic: false
+    enchantments:
+      PROTECTION_ENVIRONMENTAL:
+        maxlevel: 4
+        startingprice: 2
+      THORNS:
+        maxlevel: 3
+        startingprice: 2
+      PROTECTION_PROJECTILE:
+        maxlevel: 4
+        startingprice: 1
+      PROTECTION_FIRE:
+        maxlevel: 4
+        startingprice: 1
+      PROTECTION_EXPLOSIONS:
+        maxlevel: 4
+        startingprice: 1
+      PROTECTION_FALL:
+        maxlevel: 4
+        startingprice: 1
+      DEPTH_STRIDER:
+        maxlevel: 4
+        startingprice: 1
+        
+  SWORD:
+    generic: true
+    enchantments:
+      DAMAGE_ALL:
+        maxlevel: 5
+        startingprice: 2
+      FIRE_ASPECT:
+        maxlevel: 2
+        startingprice: 2
+      SWEEPING_EDGE:
+        maxlevel: 3
+        startingprice: 1
+      KNOCKBACK:
+        maxlevel: 2
+        startingprice: 1
+  AXE:
+    generic: true
+    enchantments:
+      DAMAGE_ALL:
+        maxlevel: 5
+        startingprice: 2
+        startingprice: 2
+      SWEEPING_EDGE:
+        maxlevel: 3
+        startingprice: 1
+      
+   

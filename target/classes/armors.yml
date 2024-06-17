@@ -1,0 +1,126 @@
+# ITEM:
+  # amount: Integer
+  # slot: Integer
+  # currency:
+    # material: MATERIAL
+    # price: Integer
+  # lore:
+   # - "line 1"
+   # - "line 2"
+   # ...
+
+globalsettings:
+  lore:
+  removedlore:
+    - ""
+    - "&7Use this item to protect"
+    - "&7yourself from enemy attacks."
+    - ""
+    - "&eLEFT CLICK to buy"
+    - "&eRIGHT CLICK to buy & equip"
+CHAINMAIL_CHESTPLATE:
+  amount: 1
+  slot: 19
+  persistent: true
+  currency:
+    material: EMERALD
+    price: 1
+  lore:
+CHAINMAIL_LEGGINGS:
+  amount: 1
+  slot: 28
+  persistent: true
+  currency:
+    material: EMERALD
+    price: 1
+  lore:
+CHAINMAIL_BOOTS:
+  amount: 1
+  slot: 37
+  persistent: true
+  currency:
+    material: EMERALD
+    price: 1
+  lore:
+IRON_CHESTPLATE:
+  amount: 1
+  slot: 21
+  persistent: true
+  currency:
+    material: EMERALD
+    price: 4
+  lore:
+IRON_LEGGINGS:
+  amount: 1
+  slot: 30
+  persistent: true
+  currency:
+    material: EMERALD
+    price: 3
+  lore:
+IRON_BOOTS:
+  amount: 1
+  slot: 39
+  persistent: true
+  currency:
+    material: EMERALD
+    price: 3
+  lore:
+GOLDEN_CHESTPLATE:
+  amount: 1
+  slot: 23
+  persistent: true
+  currency:
+    material: EMERALD
+    price: 7
+  lore:
+    - "&6Can be enchanted with Thorns."
+GOLDEN_LEGGINGS:
+  amount: 1
+  slot: 32
+  persistent: true
+  currency:
+    material: EMERALD
+    price: 6
+  lore:
+    - "&6Can be enchanted with Thorns."
+GOLDEN_BOOTS:
+  amount: 1
+  slot: 41
+  persistent: true
+  currency:
+    material: EMERALD
+    price: 6
+  lore:
+    - "&6Can be enchanted with Thorns."
+DIAMOND_CHESTPLATE:
+  amount: 1
+  slot: 25
+  persistent: true
+  currency:
+    material: EMERALD
+    price: 10
+  lore:
+DIAMOND_LEGGINGS:
+  amount: 1
+  slot: 34
+  persistent: true
+  currency:
+    material: EMERALD
+    price: 9
+  lore:
+DIAMOND_BOOTS:
+  amount: 1
+  slot: 43
+  persistent: true
+  currency:
+    material: EMERALD
+    price: 9
+  lore:
+
+    
+    
+    
+    
+    
+    

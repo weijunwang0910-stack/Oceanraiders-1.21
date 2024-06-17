@@ -1,0 +1,94 @@
+globalsettings:
+  lore:
+  removedlore:
+    - "&eLEFT CLICK to buy"
+BREAD:
+  amount: 8
+  slot: 19
+  currency:
+    material: EMERALD
+    price: 3
+  lore:
+    - "&7Restores 2.5 Food Level."
+    - ""
+APPLE:
+  amount: 16
+  slot: 14
+  currency:
+    material: EMERALD
+    price: 2
+  lore:
+    - "&7Restores 2 Food Level."
+    - ""
+SWEET_BERRIES:
+  amount: 32
+  slot: 11
+  currency:
+    material: EMERALD
+    price: 2
+  lore:
+    - "&7Restores 1 Food Level."
+    - ""
+DRIED_KELP:
+  amount: 32
+  slot: 10
+  currency:
+    material: EMERALD
+    price: 1
+  lore:
+    - "&7Restores 1/2 Food Level."
+    - ""
+PUMPKIN_PIE:
+  amount: 6
+  slot: 20
+  currency:
+    material: EMERALD
+    price: 4
+  lore:
+    - "&7Restores 4 Food Level."
+    - ""
+COOKED_PORKCHOP:
+  amount: 16
+  slot: 28
+  currency:
+    material: EMERALD
+    price: 7
+  lore:
+    - "&7Restores 4 Food Level."
+    - ""
+COOKED_COD:
+  amount: 16
+  slot: 15
+  currency:
+    material: EMERALD
+    price: 4
+  lore:
+    - "&7Restores 2.5 Food Level."
+    - ""
+GOLDEN_APPLE:
+  amount: 1
+  slot: 37
+  currency:
+    material: EMERALD
+    price: 9
+  lore:
+    - "&7Gives you 2 two extra hearts!"
+    - ""
+MELON_SLICE:
+  amount: 36 
+  slot: 12
+  currency:
+    material: EMERALD
+    price: 2
+  lore:
+    - "&7Restores 1 Food Level."
+    - ""
+COOKIE:
+  amount: 16 
+  slot: 13
+  currency:
+    material: EMERALD
+    price: 1
+  lore:
+    - "&7Restores 1 Food Level."
+    - ""

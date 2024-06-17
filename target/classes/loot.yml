@@ -1,0 +1,24 @@
+globalsettings:
+  generateTimes: 30
+  refreshInSeconds: 240
+basicloot:
+  EMERALD:
+    amount: 2
+    weight: 4
+  DIAMOND:
+    amount: 1
+    weight: 3 
+enchantloot:
+  AIR:
+    amount: 2
+    weight: 3
+  LAPIS_LAZULI:
+    amount: 1
+    weight: 1   
+potionloot:
+  AIR:
+    amount: 2
+    weight: 3
+  GLOWSTONE_DUST:
+    amount: 1
+    weight: 1

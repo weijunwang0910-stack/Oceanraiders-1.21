@@ -1,0 +1,216 @@
+BLUE_ISLAND:
+  displayName: Blue Island
+  spawnLoc:
+    world: oceanraiders_active_1656097008574
+    x: 67.02616466928576
+    y: 65.0
+    z: 84.56199454899249
+    yaw: -267.33813
+    pitch: 4.5399346
+  dropLoc:
+    world: oceanraiders_active_1656097008574
+    x: -21.757418477159796
+    y: 65.0
+    z: -9.300000011920929
+    yaw: 90.55277
+    pitch: -8.817776
+  cornerOne:
+    world: oceanraiders_active_1656097008574
+    x: -117.52629614581741
+    y: 20.0
+    z: -106.42327181962186
+    yaw: 0.0
+    pitch: 0.0
+  cornerTwo:
+    world: oceanraiders_active_1656097008574
+    x: 245.69999998807907
+    y: 150.0
+    z: 239.3913205027057
+    yaw: 0.0
+    pitch: 0.0
+  chestLoc:
+    world: oceanraiders_active_1656097008574
+    x: 139.0
+    y: 41.0
+    z: 102.0
+    yaw: 90.0
+    pitch: 0.0
+  lootChestOne:
+    world: oceanraiders_active_1656097008574
+    x: 136.0
+    y: 66.0
+    z: 111.0
+    yaw: 0.0
+    pitch: 0.0
+  lootChestTwo:
+    world: oceanraiders_active_1656097008574
+    x: 146.0
+    y: 54.0
+    z: 120.0
+    yaw: 0.0
+    pitch: 0.0
+  lootChestThree:
+    world: oceanraiders_active_1656097008574
+    x: 139.0
+    y: 51.0
+    z: 105.0
+    yaw: 0.0
+    pitch: 0.0
+  blacksmith:
+    world: oceanraiders_active_1656097008574
+    x: 80.96106979106543
+    y: 70.0
+    z: 113.14375631849052
+    yaw: -180.4414
+    pitch: -2.4473717
+  librarian:
+    world: oceanraiders_active_1656097008574
+    x: 82.01675922544736
+    y: 65.0
+    z: 87.75936024423396
+    yaw: -269.77856
+    pitch: -4.421241
+  farmer:
+    world: oceanraiders_active_1656097008574
+    x: 76.66047830369794
+    y: 70.0
+    z: 124.72943383974088
+    yaw: -182.64636
+    pitch: -2.1315045
+  witch:
+    world: oceanraiders_active_1656097008574
+    x: 68.16858530807436
+    y: 65.0
+    z: 74.51254314605556
+    yaw: -0.57006836
+    pitch: -2.8815823
+  docks:
+    dock1:
+      world: oceanraiders_active_1656097008574
+      x: -56.0
+      y: 62.0
+      z: -19.0
+      yaw: 90.0
+      pitch: 0.0
+    dock2:
+      world: oceanraiders_active_1656097008574
+      x: -60.0
+      y: 62.0
+      z: -12.0
+      yaw: 90.0
+      pitch: 0.0
+    dock3:
+      world: oceanraiders_active_1656097008574
+      x: -62.0
+      y: 62.0
+      z: -27.0
+      yaw: 90.0
+      pitch: 0.0
+RED_ISLAND:
+  displayName: Red Island
+  spawnLoc:
+    world: oceanraiders_active_1656097008574
+    x: -373.02320933610594
+    y: 65.0
+    z: 84.09197334101488
+    yaw: -91.325806
+    pitch: -3.592201
+  dropLoc:
+    world: oceanraiders_active_1656097008574
+    x: -283.84535811808456
+    y: 64.5
+    z: -10.481986864729489
+    yaw: 267.34702
+    pitch: -16.065254
+  cornerOne:
+    world: oceanraiders_active_1656097008574
+    x: -552.3092642275404
+    y: 25.0
+    z: -107.44820876034154
+    yaw: 0.0
+    pitch: 0.0
+  cornerTwo:
+    world: oceanraiders_active_1656097008574
+    x: -188.8042194638364
+    y: 150.0
+    z: 238.0415923121082
+    yaw: 0.0
+    pitch: 0.0
+  chestLoc:
+    world: oceanraiders_active_1656097008574
+    x: -447.0
+    y: 41.0
+    z: 101.0
+    yaw: 0.0
+    pitch: 0.0
+  lootChestOne:
+    world: oceanraiders_active_1656097008574
+    x: -443.0
+    y: 66.0
+    z: 110.0
+    yaw: 0.0
+    pitch: 0.0
+  lootChestTwo:
+    world: oceanraiders_active_1656097008574
+    x: -451.0
+    y: 54.0
+    z: 119.0
+    yaw: 0.0
+    pitch: 0.0
+  lootChestThree:
+    world: oceanraiders_active_1656097008574
+    x: -446.0
+    y: 51.0
+    z: 104.0
+    yaw: 0.0
+    pitch: 0.0
+  blacksmith:
+    world: oceanraiders_active_1656097008574
+    x: -386.8884454717035
+    y: 70.0
+    z: 112.78813100416637
+    yaw: -181.25781
+    pitch: -4.381702
+  librarian:
+    world: oceanraiders_active_1656097008574
+    x: -388.20894982507536
+    y: 65.0
+    z: 82.50982012111989
+    yaw: -89.23364
+    pitch: -5.052882
+  farmer:
+    world: oceanraiders_active_1656097008574
+    x: -382.09673002721036
+    y: 70.0
+    z: 125.26596431464822
+    yaw: -179.32056
+    pitch: -2.249947
+  witch:
+    world: oceanraiders_active_1656097008574
+    x: -369.12017519246376
+    y: 65.0
+    z: 76.45454914888114
+    yaw: -358.70898
+    pitch: -1.5788188
+  docks:
+    dock1:
+      world: oceanraiders_active_1656097008574
+      x: -244.0
+      y: 62.0
+      z: -28.0
+      yaw: 270.0
+      pitch: 0.0
+    dock2:
+      world: oceanraiders_active_1656097008574
+      x: -249.0
+      y: 62.0
+      z: -20.0
+      yaw: 270.0
+      pitch: 0.0
+    dock3:
+      world: oceanraiders_active_1656097008574
+      x: -246.0
+      y: 62.0
+      z: -13.0
+      yaw: 270.0
+      pitch: 0.0

@@ -1,0 +1,137 @@
+# ITEM:
+# amount: Integer
+# slot: Integer
+# currency:
+# material: MATERIAL
+# price: Integer
+# lore:
+# - "line 1"
+# - "line 2"
+# ...
+globalsettings:
+  lore:
+    - "&7Use items here when"
+    - "&7meleeing your opponent."
+    - ""
+  removedlore:
+    - "&eLEFT CLICK to buy"
+STONE_SWORD:
+  amount: 1
+  slot: 19
+  persistent: true
+  currency:
+    material: EMERALD
+    price: 3
+  lore:
+    - ""
+    - "&7Swords have a quicker recharge"
+    - "&7time than axes, but they also deal"
+    - "&7less damage per hit."
+    - ""
+IRON_SWORD:
+  amount: 1
+  slot: 20
+  persistent: true
+  currency:
+    material: EMERALD
+    price: 6
+  lore:
+    - ""
+    - "&7Swords have a quicker recharge"
+    - "&7time than axes, but they also deal"
+    - "&7less damage per hit."
+    - ""
+GOLDEN_SWORD:
+  amount: 1
+  slot: 21
+  persistent: true
+  currency:
+    material: EMERALD
+    price: 9
+  lore:
+    - ""
+    - "&7Swords have a quicker recharge"
+    - "&7time than axes, but they also deal"
+    - "&7less damage per hit."
+    - ""
+DIAMOND_SWORD:
+  amount: 1
+  slot: 22
+  persistent: true
+  currency:
+    material: EMERALD
+    price: 12
+  lore:
+    - ""
+    - "&7Swords have a quicker recharge"
+    - "&7time than axes, but they also deal"
+    - "&7less damage per hit."
+    - ""
+STONE_AXE:
+  amount: 1
+  slot: 28
+  persistent: true
+  currency:
+    material: EMERALD
+    price: 3
+  lore:
+    - ""
+    - "&7Axes deal higher damage than swords"
+    - "&7per hit, but they also have a"
+    - "&7longer recharge time."
+    - ""
+IRON_AXE:
+  amount: 1
+  slot: 29
+  persistent: true
+  currency:
+    material: EMERALD
+    price: 6
+  lore:
+    - ""
+    - "&7Axes deal higher damage than swords"
+    - "&7per hit, but they also have a"
+    - "&7longer recharge time."
+    - ""
+GOLDEN_AXE:
+  amount: 1
+  slot: 30
+  persistent: true
+  currency:
+    material: EMERALD
+    price: 9
+  lore:
+    - ""
+    - "&7Axes deal higher damage than swords"
+    - "&7per hit, but they also have a"
+    - "&7longer recharge time."
+    - ""
+DIAMOND_AXE:
+  amount: 1
+  slot: 31
+  persistent: true
+  currency:
+    material: EMERALD
+    price: 12
+  lore:
+    - ""
+    - "&7Axes deal higher damage than swords"
+    - "&7per hit, but they also have a"
+    - "&7longer recharge time."
+    - ""
+SHIELD:
+  amount: 1
+  slot: 24
+  persistent: false
+  currency:
+    material: EMERALD
+    price: 3
+  lore:
+    - ""
+    - "&7Shields can block damages,"
+    - "&7but they could be disabled"
+    - "&7temporarily once hit."
+    - ""
+    
+    
+    

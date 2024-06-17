@@ -1,0 +1,13 @@
+main: me.cryptidyy.oceanraiders.Main
+name: OceanRaiders
+version: 1.0
+author: cryptidyy
+api-version: 1.15
+
+depend: [CoreAPI, FriendsAPIForPartyAndFriends, Spigot-Party-API-PAF]
+
+commands:
+  orsetup:
+  oceanraiders:
+  ortest:
+  setstate:

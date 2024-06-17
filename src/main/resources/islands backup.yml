@@ -1,0 +1,145 @@
+RED_ISLAND:
+  displayName: Red Island
+  spawnLoc:
+    world: oceanraiders
+    x: -275.35161490211425
+    y: 65.0
+    z: 3.210167049783271
+    yaw: 270.97052
+    pitch: 0.28182772
+  dropLoc:
+    world: oceanraiders
+    x: -283.84535811808456
+    y: 64.5
+    z: -10.481986864729489
+    yaw: 267.34702
+    pitch: -16.065254
+  cornerOne:
+    world: oceanraiders
+    x: -552.3092642275404
+    y: 25.0
+    z: -107.44820876034154
+    yaw: 0.0
+    pitch: 0.0
+  cornerTwo:
+    world: oceanraiders
+    x: -188.8042194638364
+    y: 150.0
+    z: 238.0415923121082
+    yaw: 0.0
+    pitch: 0.0
+  chestLoc:
+    world: oceanraiders
+    x: -446.0
+    y: 40.0
+    z: 97.0
+    yaw: 0.0
+    pitch: 0.0
+  lootChestOne:
+    world: oceanraiders
+    x: -269.0
+    y: 65.0
+    z: -28.0
+    yaw: 0.0
+    pitch: 0.0
+  lootChestTwo:
+    world: oceanraiders
+    x: -269.0
+    y: 65.0
+    z: -25.0
+    yaw: 0.0
+    pitch: 0.0
+  lootChestThree:
+    world: oceanraiders
+    x: -269.0
+    y: 65.0
+    z: -23.0
+    yaw: 0.0
+    pitch: 0.0
+  blacksmith:
+    world: oceanraiders
+    x: 0
+    y: 0
+    z: 0
+    yaw: 0.0
+    pitch: 0.0
+  librarian:
+    world: oceanraiders
+    x: 0
+    y: 0
+    z: 0
+    yaw: 0.0
+    pitch: 0.0
+    
+BLUE_ISLAND:
+  displayName: Blue Island
+  spawnLoc:
+    world: oceanraiders
+    x: -30.682358676199367
+    y: 65.0
+    z: 4.421482375913527
+    yaw: 89.66695
+    pitch: -8.133257
+  dropLoc:
+    world: oceanraiders
+    x: -21.757418477159796
+    y: 65.0
+    z: -9.300000011920929
+    yaw: 90.55277
+    pitch: -8.817776
+  cornerOne:
+    world: oceanraiders
+    x: -117.52629614581741
+    y: 20.0
+    z: -106.42327181962186
+    yaw: 0.0
+    pitch: 0.0
+  cornerTwo:
+    world: oceanraiders
+    x: 245.69999998807907
+    y: 150.0
+    z: 239.3913205027057
+    yaw: 0.0
+    pitch: 0.0
+  chestLoc:
+    world: oceanraiders
+    x: 143.0
+    y: 40.0
+    z: 98.0
+    yaw: 0.0
+    pitch: 0.0
+  lootChestOne:
+    world: oceanraiders
+    x: -34.0
+    y: 65.0
+    z: 0.0
+    yaw: 0.0
+    pitch: 0.0
+  lootChestTwo:
+    world: oceanraiders
+    x: -31.0
+    y: 65.0
+    z: -3.0
+    yaw: 0.0
+    pitch: 0.0
+  lootChestThree:
+    world: oceanraiders
+    x: -29.0
+    y: 65.0
+    z: 0.0
+    yaw: 0.0
+    pitch: 0.0
+  blacksmith:
+    world: oceanraiders
+    x: 0
+    y: 0
+    z: 0
+    yaw: 0.0
+    pitch: 0.0
+  librarian:
+    world: oceanraiders
+    x: 0
+    y: 0
+    z: 0
+    yaw: 0.0
+    pitch: 0.0

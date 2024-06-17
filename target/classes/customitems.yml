@@ -1,0 +1,84 @@
+# CUSTOMITEM:
+  # amount: item amount
+  # currency:
+    # material: item type
+    # price: price
+  # inventoryname: armor/sword/bow
+  # slot: slot
+  # lore:
+    # - "1"
+    # - "2"
+globalsettings:
+  lore:
+    - ""
+  removedlore:
+    - ""
+    - "&eLEFT CLICK to buy"
+FirePlacer:
+  amount: 1
+  currency:
+    material: DIAMOND
+    price: 1
+    color: AQUA
+  inventoryname: sword
+  slot: 33
+  lore:
+    - " "
+    - "&7Places fire in a 3x3 area"
+    - "&7around the block you clicked on."
+    - "&7Right click on ground to use."
+TeleportTrident:
+  amount: 1
+  currency:
+    material: DIAMOND
+    price: 3
+    color: AQUA
+  inventoryname: bow
+  slot: 23
+  lore:
+    - " "
+    - "&7Teleports you to the player"
+    - "&7that you aimed with this trident."
+    - "&7Hold the trident to aim,"
+    - "&7and right click to throw."
+    - ""
+    - "&7You can only use this item once."
+CobwebWall:
+  amount: 1
+  currency:
+    material: DIAMOND
+    price: 2
+    color: AQUA
+  inventoryname: sword
+  slot: 25
+  lore:
+    - " "
+    - "&7Builds a wall of cobweb"
+    - "&7in front of you when placed."
+    - "&7Right click on the"
+    - "&7ground to place."
+ImmunityMilk:
+  amount: 1
+  currency:
+    material: GLOWSTONE_DUST
+    price: 2
+    color: GOLD
+  inventoryname: splashShop
+  slot: 24
+  lore:
+    - " "
+    - "&7Grants immunity to "
+    - "&7all potion effects."
+    - "&9(01:30)"
+BoatSinker:
+  amount: 1
+  currency:
+    material: DIAMOND
+    price: 2
+    color: AQUA
+  inventoryname: bow
+  slot: 25
+  lore:
+    - " "
+    - "&7Throw this item at boats"
+    - "and they will sink."

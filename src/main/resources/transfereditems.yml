@@ -1,0 +1,7 @@
+# items that the killers get when they kill a player
+transfereditems:
+  types:
+    - "EMERALD"
+    - "LAPIS_LAZULI"
+    - "GLOWSTONE_DUST"
+    - "DIAMOND"

@@ -1,0 +1,172 @@
+RED_ISLAND:
+  displayName: Red Island
+  spawnLoc:
+    world: world
+    x: -275.35161490211425
+    y: 65.0
+    z: 3.210167049783271
+    yaw: 270.97052
+    pitch: 0.28182772
+  dropLoc:
+    world: world
+    x: -283.84535811808456
+    y: 64.5
+    z: -10.481986864729489
+    yaw: 267.34702
+    pitch: -16.065254
+  cornerOne:
+    world: world
+    x: -552.3092642275404
+    y: 25.0
+    z: -107.44820876034154
+    yaw: 0.0
+    pitch: 0.0
+  cornerTwo:
+    world: world
+    x: -188.8042194638364
+    y: 150.0
+    z: 238.0415923121082
+    yaw: 0.0
+    pitch: 0.0
+  chestLoc:
+    world: world
+    x: -446.0
+    y: 40.0
+    z: 97.0
+    yaw: 0.0
+    pitch: 0.0
+  lootChestOne:
+    world: world
+    x: -269.0
+    y: 65.0
+    z: -28.0
+    yaw: 0.0
+    pitch: 0.0
+  lootChestTwo:
+    world: world
+    x: -269.0
+    y: 65.0
+    z: -25.0
+    yaw: 0.0
+    pitch: 0.0
+  lootChestThree:
+    world: world
+    x: -269.0
+    y: 65.0
+    z: -23.0
+    yaw: 0.0
+    pitch: 0.0
+  blacksmith:
+    world: world
+    x: -274.79895838178896
+    y: 65.0
+    z: 1.2352538966398101
+    yaw: 261.99445
+    pitch: -1.842053
+  librarian:
+    world: world
+    x: -275.9807465875576
+    y: 65.0
+    z: 8.295202391894493
+    yaw: 272.4057
+    pitch: -2.3983893
+  farmer:
+    world: world
+    x: -270.95720456280634
+    y: 65.0
+    z: 1.5215969566690437
+    yaw: 271.80515
+    pitch: -1.824298
+  witch:
+    world: world
+    x: -269.134211850385
+    y: 65.0
+    z: -8.556526268670485
+    yaw: 280.01608
+    pitch: 0.07961291
+BLUE_ISLAND:
+  displayName: Blue Island
+  spawnLoc:
+    world: world
+    x: -30.682358676199367
+    y: 65.0
+    z: 4.421482375913527
+    yaw: 89.66695
+    pitch: -8.133257
+  dropLoc:
+    world: world
+    x: -21.757418477159796
+    y: 65.0
+    z: -9.300000011920929
+    yaw: 90.55277
+    pitch: -8.817776
+  cornerOne:
+    world: world
+    x: -117.52629614581741
+    y: 20.0
+    z: -106.42327181962186
+    yaw: 0.0
+    pitch: 0.0
+  cornerTwo:
+    world: world
+    x: 245.69999998807907
+    y: 150.0
+    z: 239.3913205027057
+    yaw: 0.0
+    pitch: 0.0
+  chestLoc:
+    world: world
+    x: 143.0
+    y: 40.0
+    z: 98.0
+    yaw: 0.0
+    pitch: 0.0
+  lootChestOne:
+    world: world
+    x: -34.0
+    y: 65.0
+    z: 0.0
+    yaw: 0.0
+    pitch: 0.0
+  lootChestTwo:
+    world: world
+    x: -31.0
+    y: 65.0
+    z: -3.0
+    yaw: 0.0
+    pitch: 0.0
+  lootChestThree:
+    world: world
+    x: -29.0
+    y: 65.0
+    z: 0.0
+    yaw: 0.0
+    pitch: 0.0
+  blacksmith:
+    world: world
+    x: -31.06412957518419
+    y: 65.0
+    z: 8.962218448922883
+    yaw: 88.92285
+    pitch: 7.0990825
+  librarian:
+    world: world
+    x: -31.793263664512065
+    y: 65.0
+    z: -1.0619342107458962
+    yaw: 84.75037
+    pitch: -2.9547372
+  farmer:
+    world: world
+    x: -26.186976390362698
+    y: 65.0
+    z: 1.2361182751940458
+    yaw: 61.527195
+    pitch: 18.814928
+  witch:
+    world: world
+    x: -40.019093253255335
+    y: 65.0
+    z: -11.175227933879944
+    yaw: 89.93753
+    pitch: 0.99362355

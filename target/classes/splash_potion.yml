@@ -1,0 +1,138 @@
+globalsettings:
+  lore:
+    - "&7Use splash potions to"
+    - "&7surprise your opponents."
+    - ""
+  removedlore:
+    - "&eLEFT CLICK to buy"
+healing2:
+  material: SPLASH_POTION
+  amount: 1
+  slot: 19
+  currency:
+    material: GLOWSTONE_DUST
+    price: 1
+    color: GOLD
+  effects:
+    HEAL:
+      level: 2
+      duration: 0
+      displayname: "Instant Healing Potion"
+  lore:
+    - "&9Instant Healing II"
+    - ""
+healing4:
+  material: SPLASH_POTION
+  amount: 1
+  slot: 28
+  currency:
+    material: GLOWSTONE_DUST
+    price: 3
+    color: GOLD
+  effects:
+    HEAL:
+      level: 4
+      duration: 0
+      displayname: "Instant Healing Potion"
+  lore:
+    - "&9Instant Healing IV"
+    - ""
+poison1:
+  material: SPLASH_POTION
+  amount: 1
+  slot: 20
+  currency:
+    material: GLOWSTONE_DUST
+    price: 2
+    color: GOLD
+  effects:
+    POISON:
+      level: 1
+      duration: 10
+      displayname: "Poison Potion"
+  lore:
+    - "&cPoison I (00:10)"
+    - ""
+poison2:
+  material: SPLASH_POTION
+  amount: 1
+  slot: 29
+  currency:
+    material: GLOWSTONE_DUST
+    price: 4
+    color: GOLD
+  effects:
+    POISON:
+      level: 2
+      duration: 10
+      displayname: "Poison Potion"
+  lore:
+    - "&cPoison II (00:10)"
+    - ""
+insta_damage1:
+  material: SPLASH_POTION
+  amount: 1
+  slot: 21
+  currency:
+    material: GLOWSTONE_DUST
+    price: 1
+    color: GOLD
+  effects:
+    HARM:
+      level: 1
+      duration: 0
+      displayname: "Harming Potion"
+  lore:
+    - "&cInstant Damage I"
+    - ""
+insta_damage2:
+  material: SPLASH_POTION
+  amount: 1
+  slot: 30
+  currency:
+    material: GLOWSTONE_DUST
+    price: 2
+    color: GOLD
+  effects:
+    HARM:
+      level: 2
+      duration: 0
+      displayname: "Harming Potion"
+  lore:
+    - "&cInstant Damage II"
+    - ""
+weak1:
+  material: SPLASH_POTION
+  amount: 1
+  slot: 22
+  currency:
+    material: GLOWSTONE_DUST
+    price: 4
+    color: GOLD
+  effects:
+    WEAKNESS:
+      level: 1
+      duration: 90
+      displayname: "Weakness Potion"
+  lore:
+    - "&cWeakness I (1:30)"
+    - ""  
+weak4:
+  material: SPLASH_POTION
+  amount: 1
+  slot: 31
+  currency:
+    material: GLOWSTONE_DUST
+    price: 8
+    color: GOLD
+  effects:
+    WEAKNESS:
+      level: 4
+      duration: 45
+      displayname: "Weakness Potion"
+  lore:
+    - "&cWeakness IV (00:45)"
+    - ""
+    - "&bDisables the ability to attack"
+    - ""
+

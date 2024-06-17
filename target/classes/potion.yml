@@ -1,0 +1,89 @@
+globalsettings:
+  lore:
+    - "&7Use potions for special effects."
+    - "&7Some potions are better than others,"
+    - "&7but are also more expensive."
+    - ""
+  removedlore:
+    - "&eLEFT CLICK to buy"
+healing:
+  material: POTION
+  amount: 1
+  slot: 19
+  currency:
+    material: GLOWSTONE_DUST
+    price: 1
+    color: GOLD
+  effects:
+    HEAL:
+      level: 2
+      duration: 0
+      displayname: "Instant Healing Potion"
+  lore:
+    - "&9Instant Healing II"
+    - ""
+regen:
+  material: POTION
+  amount: 1
+  slot: 20
+  currency:
+    material: GLOWSTONE_DUST
+    price: 1
+    color: GOLD
+  effects:
+    REGENERATION:
+      level: 2
+      duration: 30
+      displayname: "Regeneration Potion"
+  lore:
+    - "&9Regeneration II (00:30)"
+    - ""
+speed2:
+  material: POTION
+  amount: 1
+  slot: 21
+  currency:
+    material: GLOWSTONE_DUST
+    price: 2
+    color: GOLD
+  effects:
+    SPEED:
+      level: 2
+      duration: 45
+      displayname: "Speed Potion"
+  lore:
+    - "&9Swiftness II (00:45)"
+    - ""
+jump5:
+  material: POTION
+  amount: 1
+  slot: 22
+  currency:
+    material: GLOWSTONE_DUST
+    price: 2
+    color: GOLD
+  effects:
+    JUMP:
+      level: 5
+      duration: 45
+      displayname: "Jump Boost Potion"
+  lore:
+    - "&9Jump Boost V (00:45)"
+    - ""  
+fireres:
+  material: POTION
+  amount: 1
+  slot: 23
+  currency:
+    material: GLOWSTONE_DUST
+    price: 2
+    color: GOLD
+  effects:
+    FIRE_RESISTANCE:
+      level: 1
+      duration: 3:00
+      displayname: "Fire Resistance Potion"
+  lore:
+    - "&9Fire Resistance (3:00)"
+    - ""  
+

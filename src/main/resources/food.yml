@@ -1,0 +1,159 @@
+globalsettings:
+  lore:
+  removedlore:
+    - "&7Use foods for healing."
+    - "&eLEFT CLICK to buy"
+DRIED_KELP:
+  amount: 32
+  slot: 10
+  currency:
+    material: EMERALD
+    price: 1
+  lore:
+    - "&7Restores 1/2 Food Bars + 0.6 Saturation."
+    - ""
+SWEET_BERRIES:
+  amount: 36
+  slot: 11
+  currency:
+    material: EMERALD
+    price: 2
+  lore:
+    - "&7Restores 1 Food Bar + 0.4 Saturation."
+    - ""
+MELON_SLICE:
+  amount: 32
+  slot: 12
+  currency:
+    material: EMERALD
+    price: 2
+  lore:
+    - "&7Restores 1 Food Bar + 1.2 Saturation."
+    - ""
+CARROT:
+  amount: 24
+  slot: 13
+  currency:
+    material: EMERALD
+    price: 2
+  lore:
+    - "&7Restores 1.5 Food Bars + 3.6 Saturation."
+    - ""
+APPLE:
+  amount: 16
+  slot: 14
+  currency:
+    material: EMERALD
+    price: 2
+  lore:
+    - "&7Restores 2 Food Bars + 2.4 Saturation."
+    - ""
+GOLDEN_CARROT:
+  amount: 4
+  slot: 15
+  currency:
+    material: EMERALD
+    price: 2
+  lore:
+    - "&7Restores 3 Food Bars + 14.4 Saturation."
+    - ""
+COOKIE:
+  amount: 18
+  slot: 19
+  currency:
+    material: EMERALD
+    price: 1
+  lore:
+    - "&7Restores 1 Food Bar + 0.4 Saturation."
+    - ""
+BREAD:
+  amount: 8
+  slot: 20
+  currency:
+    material: EMERALD
+    price: 2
+  lore:
+    - "&7Restores 2.5 Food Bars + 6.0 Saturation."
+    - ""
+PUMPKIN_PIE:
+  amount: 8
+  slot: 21
+  currency:
+    material: EMERALD
+    price: 4
+  lore:
+    - "&7Restores 4 Food Bars + 4.8 Saturation."
+    - ""
+COOKED_COD:
+  amount: 16
+  slot: 28
+  currency:
+    material: EMERALD
+    price: 4
+  lore:
+    - "&7Restores 2.5 Food Bars + 6.0 Saturation."
+    - ""
+BAKED_POTATO:
+  amount: 8
+  slot: 29
+  currency:
+    material: EMERALD
+    price: 2
+  lore:
+    - "&7Restores 2.5 Food Bars + 6.0 Saturation."
+    - ""
+COOKED_MUTTON:
+  amount: 8
+  slot: 30
+  currency:
+    material: EMERALD
+    price: 3
+  lore:
+    - "&7Restores 3 Food Bars + 9.6 Saturation."
+    - ""
+COOKED_PORKCHOP:
+  amount: 12
+  slot: 31
+  currency:
+    material: EMERALD
+    price: 6
+  lore:
+    - "&7Restores 4 Food Bars + 12.8 Saturation."
+    - ""
+COOKED_BEEF:
+  amount: 6
+  slot: 32
+  currency:
+    material: EMERALD
+    price: 3
+  lore:
+    - "&7Restores 4 Food Bars + 12.8 Saturation."
+    - ""
+GOLDEN_APPLE:
+  amount: 1
+  slot: 37
+  currency:
+    material: EMERALD
+    price: 9
+  lore:
+    - "&7Restores 2 Food Bars + 9.6 Saturation"
+    - "&7with 2 extra hearts!"
+    - ""
+    - "&9Regeneration II (00:05)"
+    - "&9Absorption (2:00)"
+    - " "
+SUSPICIOUS_STEW:
+  amount: 1
+  slot: 38
+  currency:
+    material: EMERALD
+    price: 9
+  effect:
+    type: SATURATION
+    duration: 7
+    amplifier: 1
+    ambient: true
+    particles: false
+  lore:
+    - "&7Restores 6 Food Bars + 16.0 Saturation."
+    - ""
