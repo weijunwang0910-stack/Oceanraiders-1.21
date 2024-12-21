@@ -2,6 +2,7 @@
 # amount: Integer
 # slot: Integer
 # arroweffect: EFFECTNAME
+# damage: Integer
 # currency:
 # material: MATERIAL
 # price: Integer
@@ -76,7 +77,5 @@ TRIDENT:
     - "&7Used by throwing,"
     - "&7works well underwater."
     - ""
-    
-    
     
     

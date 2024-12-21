@@ -20,7 +20,11 @@ public class Island {
 			Location librarian,
 			Location farmer,
 			Location witch,
-		    List<Location> dockLocations)
+		    List<Location> dockLocations,
+				   Location waitCornerOne,
+				   Location waitCornerTwo,
+				   Location respawnLoc,
+				   List<Location> lootContainers)
 	{
 		this.configName = displayName.replace(" ", "_").toUpperCase();
 		this.setDisplayName(displayName);
@@ -37,6 +41,10 @@ public class Island {
 		this.setFarmer(farmer);
 		this.setWitch(witch);
 		this.setDockLocations(dockLocations);
+		this.setWaitCornerOne(waitCornerOne);
+		this.setWaitCornerTwo(waitCornerTwo);
+		this.setRespawnLoc(respawnLoc);
+		this.setLootContainers(lootContainers);
 	}
 	
 	private String displayName;
@@ -57,6 +65,12 @@ public class Island {
 	private Location blackSmith, librarian, farmer, witch;
 
 	private List<Location> docks;
+
+	private Location waitCornerOne;
+	private Location waitCornerTwo;
+	private Location respawnLoc;
+
+	private List<Location> lootContainers;
 	
 	//Shops:
 	//Farmer
@@ -175,5 +189,45 @@ public class Island {
 	public List<Location> getDockLocations() {return this.docks;}
 
 	public void setDockLocations(List<Location> dockLocations) {this.docks = dockLocations;}
+
+	public Location getWaitCornerOne()
+	{
+		return this.waitCornerOne;
+	}
+
+	public void setWaitCornerOne(Location loc)
+	{
+		this.waitCornerOne = loc;
+	}
+
+	public Location getWaitCornerTwo()
+	{
+		return this.waitCornerTwo;
+	}
+
+	public void setWaitCornerTwo(Location loc)
+	{
+		this.waitCornerTwo = loc;
+	}
+
+	public Location getRespawnLoc()
+	{
+		return this.respawnLoc;
+	}
+
+	public void setRespawnLoc(Location loc)
+	{
+		this.respawnLoc = loc;
+	}
+
+	public List<Location> getLootContainers()
+	{
+		return this.lootContainers;
+	}
+
+	public void setLootContainers(List<Location> lootContainers)
+	{
+		this.lootContainers = lootContainers;
+	}
 	
 }

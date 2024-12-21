@@ -1,0 +1,29 @@
+generateTimes: 5
+loot:
+  EMERALD:
+    amount: 1
+    weight: 2
+  DIAMOND:
+    amount: 1
+    weight: 1
+  AIR:
+    amount: 1
+    weight: 10
+  LAPIS_LAZULI:
+    amount: 1
+    weight: 1
+  COBWEB:
+    amount: 1
+    weight: 3
+  BREAD:
+    amount: 1
+    weight: 1
+  COD:
+    amount: 1
+    weight: 2
+  OAK_BOAT:
+    amount: 1
+    weight: 2
+  DEAD_BUSH:
+    amount: 1
+    weight: 3

@@ -1,16 +1,16 @@
 package me.cryptidyy.oceanraiders.state;
 
+import de.simonsator.partyandfriends.spigot.api.pafplayers.PAFPlayer;
 import de.simonsator.partyandfriends.spigot.api.pafplayers.PAFPlayerManager;
-import de.simonsator.partyandfriends.spigot.api.party.PartyManager;
 import de.simonsator.partyandfriends.spigot.api.party.PlayerParty;
 import dev.jcsoftware.jscoreboards.JScoreboardTeam;
 import me.cryptidyy.coreapi.api.API;
 import me.cryptidyy.coreapi.api.GameJoiner;
 import me.cryptidyy.oceanraiders.Main;
+import me.cryptidyy.oceanraiders.activelisteners.OceanRejoinHandler;
 import me.cryptidyy.oceanraiders.customitems.OceanItemManager;
-import me.cryptidyy.oceanraiders.gamemap.GameMap;
-import me.cryptidyy.oceanraiders.gamemap.LocalGameMap;
-import me.cryptidyy.oceanraiders.sql.QueueListener;
+import me.cryptidyy.oceanraiders.lobbylisteners.OceanJoinHandler;
+import me.cryptidyy.oceanraiders.sql.OceanQueueListener;
 import me.cryptidyy.oceanraiders.tickers.GameLoop;
 import me.cryptidyy.oceanraiders.npcs.GameNPCSetupManager;
 import me.cryptidyy.oceanraiders.player.OceanTeam;
@@ -47,6 +47,7 @@ public class GameManager {
 
 	private OceanTeam teamRed = new OceanTeam("Red Team");
 	private OceanTeam teamBlue = new OceanTeam("Blue Team");
+	private List<GameJoiner> gameJoiners = new ArrayList<>();
 
 	private ScoreboardManager boardManager;
 	private final HealthBar HEALTH_BAR = new HealthBar();
@@ -74,11 +75,9 @@ public class GameManager {
 	private GameLoop gameLoop;
 
 	private ItemEntryManager itemEntryManager;
-
-	private Location lobbyCornerOne;
-	private Location lobbyCornerTwo;
-
-	private QueueListener queueListener;
+	private OceanQueueListener queueListener;
+	private OceanJoinHandler joinHandler;
+	private OceanRejoinHandler rejoinHandler;
 
 	public GameManager(Main plugin)
 	{
@@ -99,16 +98,15 @@ public class GameManager {
 				.addItemFlags(ItemFlag.HIDE_ENCHANTS)
 				.addLoreLine(ChatColor.AQUA + "The treasure that's desired by every Raider")
 				.toItemStack();
-
-		this.lobbyCornerOne = new Location(this.gameWorld, -152, 111, -18);
-		this.lobbyCornerTwo = new Location(this.gameWorld, -144, 106, -10);
 	}
 
 	public void onEnable()
 	{
-		this.queueListener = new QueueListener(plugin);
+		this.queueListener = new OceanQueueListener();
 		queueListener.runTaskTimer(plugin, 0, 10);
 
+		this.joinHandler = new OceanJoinHandler(queueListener, plugin.getServer(), this);
+		this.rejoinHandler = new OceanRejoinHandler(queueListener, plugin.getServer(), this);
 		this.oceanItemManager = plugin.getItemManager();
 		this.itemEntryManager = new ItemEntryManager(plugin);
 		this.islandManager = plugin.getIslandManager();
@@ -122,7 +120,7 @@ public class GameManager {
 		this.queueListener.cancel();
 	}
 
-	public QueueListener getQueueListener() {
+	public OceanQueueListener getQueueListener() {
 		return queueListener;
 	}
 
@@ -136,108 +134,36 @@ public class GameManager {
 
 	}
 
-	//Accepts solo players, or party members/leaders
-	public void join(GameJoiner joiner)
-	{
-		//remove joiner from queue once it has joined
-		joiner.removeFromQueue();
-
-		Player leader = Bukkit.getPlayer(joiner.getUUID());
-
-		//join before game
-		if(allPlayers.contains(leader.getUniqueId()) || lobbyPlayers.contains(leader.getUniqueId()))
-		{
-			leader.sendMessage(org.bukkit.ChatColor.RED + "You are already in a game!");
-			return;
-		}
-
-		//OceanTeam teamToJoin = teamBlue;
-		OceanTeam teamToJoin = teamRed.getPlayers().size() <= teamBlue.getPlayers().size() ? teamRed : teamBlue;
-
-		List<UUID> allPlayers = joiner.getAllPlayers();
-		for(UUID uuid : allPlayers)
-		{
-			Player player = Bukkit.getPlayer(uuid);
-			preparePlayer(player, teamToJoin);
-			API.getInstance().alreadyQueuedPlayers.remove(uuid);
-		}
-	}
-
-	private void preparePlayer(Player player, OceanTeam teamToJoin)
+	public void preparePlayer(Player player)
 	{
 		if(state instanceof WaitingArenaState || state instanceof StartCountdownState)
 			lobbyPlayers.add(player.getUniqueId());
 
 		//teleport player to lobby
 		player.teleport(new Location(this.gameWorld, -147.5, 109, -13.5));
+		player.setHealth(20);
+		player.setFoodLevel(20);
+		player.getInventory().clear();
+		player.setGameMode(GameMode.ADVENTURE);
+		player.getScoreboard().getTeams().forEach(team -> team.unregister());
 
-		teamToJoin.addPlayer(player);
-		this.sendGameMessage(org.bukkit.ChatColor.AQUA + player.getName() + org.bukkit.ChatColor.GRAY + " has joined "
-				+ teamToJoin.getTeamName() + " (" + lobbyPlayers.size() + "/" + MAX_PLAYERS + ")");
+//		teamToJoin.addPlayer(player);
+//		this.sendGameMessage(org.bukkit.ChatColor.AQUA + player.getName() + org.bukkit.ChatColor.GRAY + " has joined "
+//				+ teamToJoin.getTeamName() + " (" + lobbyPlayers.size() + "/" + MAX_PLAYERS + ")");
 	}
 
-	//Do not rejoin the entire party
-	public void rejoin(GameJoiner joiner)
-	{
-		Player player = Bukkit.getPlayer(joiner.getUUID());
-
-		if(!allPlayers.contains(player.getUniqueId()))
-		{
-			player.sendMessage(ChatColor.RED + "There's no game for you to rejoin!");
-			return;
-		}
-
-		//for(UUID memberID : joiner.getAllPlayers())
-		//{
-			Player member = player;
-			//Add members back to their team
-			if(PlayerManager.toOceanPlayer(member).getPlayerTeam().getTeamName().equals("Red Team"))
-			{
-				teamRed.getPlayers().add(member.getUniqueId());
-
-				this.getBoardManager().addPlayerToTeamRed(member);
-				this.sendGameMessage(ChatColor.RED + member.getName() + ChatColor.GRAY + " has rejoined.");
-			}
-			else
-			{
-				teamBlue.getPlayers().add(member.getUniqueId());
-
-				this.getBoardManager().addPlayerToTeamBlue(member);
-				this.sendGameMessage(ChatColor.BLUE + member.getName() + ChatColor.GRAY + " has rejoined.");
-			}
-
-			PlayerManager.toOceanPlayer(member).killPlayer(null);
-
-			//Register player again
-			try
-			{
-				GameNPCSetupManager.registerPlayer(member);
-			}
-			catch(Exception e)
-			{
-
-			}
-			if(!playingPlayers.contains(member.getUniqueId()))
-				playingPlayers.add(member.getUniqueId());
-
-			//PlayerManager.toOceanPlayer(player).respawnPlayer();
-
-			this.getBoardManager().addPlayer(member.getUniqueId());
-			LootChestManager.allLootChests
-					.stream()
-					.filter(chest -> chest.getUUID().equals(member.getUniqueId()))
-					.forEach(lootChest -> lootChest.displayHologram(member));
-		//}
-	}
-
-	//Note: quitting does not affect all players in a party
 	public void quit(Player quitter)
 	{
-		System.out.println(ChatColor.GOLD + quitter.getName() + " is quitting the game");
 		Player player = quitter;
+		Optional<GameJoiner> toQuit = gameJoiners.stream().filter(joiner -> joiner.getUUID().equals(quitter.getUniqueId())).findFirst();
+		if(toQuit.isPresent())
+		{
+			gameJoiners.remove(toQuit.get());
+		}
+
 		if(isStarted)
 		{
-			Bukkit.broadcastMessage(ChatColor.RED + player.getName() + ChatColor.GRAY + " has quit.");
+			Bukkit.broadcastMessage(ChatColor.WHITE + player.getName() + ChatColor.GRAY + " has quit.");
 			playingPlayers.remove(player.getUniqueId());
 			GameNPCSetupManager.unRegisterPlayer(player);
 
@@ -275,7 +201,7 @@ public class GameManager {
 					teamBlue.removePlayer(player);
 				}
 
-				Bukkit.broadcastMessage(ChatColor.RED + player.getName() + ChatColor.GRAY + " has quit.");
+				Bukkit.broadcastMessage(ChatColor.WHITE + player.getName() + ChatColor.GRAY + " has quit.");
 
 				if(this.getBoardManager() == null) return;
 				this.getBoardManager().removePlayer(player);
@@ -283,206 +209,106 @@ public class GameManager {
 		}
 	}
 
-	private List<UUID> getAllPartyPlayers(Player player)
-	{
+	public void assignOptimalTeam() {
+		List<GameJoiner> gameJoinerLeaders = new ArrayList<>();
+		for(GameJoiner joiner : gameJoiners)
+		{
+			PAFPlayer pPlayer = PAFPlayerManager.getInstance().getPlayer(joiner.getUUID());
+			if(joiner.getParty() == null)
+			{
+				gameJoinerLeaders.add(joiner);
+			}
+			else if(joiner.getParty().isLeader(pPlayer))
+			{
+				gameJoinerLeaders.add(joiner);
+			}
+		}
+
+		int n = gameJoinerLeaders.size();
+		if (n == 0)
+		{
+			return;
+		}
+
+		int totalSum = 0;
+		for (GameJoiner joiner : gameJoinerLeaders)
+		{
+			totalSum += joiner.getAllPlayers().size();
+		}
+
+		boolean[][] dp = new boolean[n + 1][totalSum / 2 + 1];
+		dp[0][0] = true;
+
+		for (int i = 1; i <= n; i++)
+		{
+			int num = gameJoinerLeaders.get(i - 1).getAllPlayers().size();
+			for (int j = 0; j <= totalSum / 2; j++)
+			{
+				dp[i][j] = dp[i - 1][j];
+				if (j >= num)
+				{
+					dp[i][j] = dp[i][j] || dp[i - 1][j - num];
+				}
+			}
+		}
+
+		int bestSum = 0;
+		for (int j = totalSum / 2; j >= 0; j--)
+		{
+			if (dp[n][j]) {
+				bestSum = j;
+				break;
+			}
+		}
+
+		//Backtrack
 		List<UUID> result = new ArrayList<>();
-		PlayerParty playerParty = PartyManager.getInstance().getParty(PAFPlayerManager.getInstance().getPlayer(player.getUniqueId()));
-		if(playerParty == null)
+		int w = bestSum;
+		for (int i = n; i > 0; i--)
 		{
-			result.add(player.getUniqueId());
-			return result;
-		}
-
-		playerParty.getAllPlayers().stream().forEach(member -> {
-			result.add(member.getUniqueId());
-		});
-
-		return result;
-	}
-
-	public void joinPlayer(Player player)
-	{
-		if(allPlayers.size() >= MAX_PLAYERS)
-		{
-			player.sendMessage(org.bukkit.ChatColor.RED + "This game is full!");
-			return;
-		}
-
-		if(!isStarted)
-		{
-			//join before game
-			if(allPlayers.contains(player.getUniqueId()) || lobbyPlayers.contains(player.getUniqueId()))
+			if (w == 0) break;
+			if (!dp[i - 1][w])
 			{
-				player.sendMessage(org.bukkit.ChatColor.RED + "You are already in a game!");
-				return;
-			}
-
-			lobbyPlayers.add(player.getUniqueId());
-			//teleport player to lobby
-			player.teleport(new Location(this.gameWorld, -147.5, 109, -13.5));
-
-			if(teamRed.getPlayers().size() <= teamBlue.getPlayers().size())
-			{
-				teamRed.addPlayer(player);
-				this.sendGameMessage(org.bukkit.ChatColor.AQUA + player.getName() + org.bukkit.ChatColor.GRAY + " has joined "
-						+ teamRed.getTeamName() + " (" + lobbyPlayers.size() + "/" + MAX_PLAYERS + ")");
-			}
-
-			else
-			{
-				teamBlue.addPlayer(player);
-				this.sendGameMessage(org.bukkit.ChatColor.AQUA + player.getName() + org.bukkit.ChatColor.GRAY + " has joined "
-						+ teamBlue.getTeamName() + " (" + lobbyPlayers.size() + "/" + MAX_PLAYERS + ")");
+				gameJoinerLeaders.get(i - 1).getAllPlayers().forEach(uuid -> result.add(uuid));
+				w -= gameJoinerLeaders.get(i - 1).getAllPlayers().size();
 			}
 		}
-		else
+
+		for(GameJoiner joiner : gameJoinerLeaders)
 		{
-			//join midgame
-			if(allPlayers.contains(player.getUniqueId()) || lobbyPlayers.contains(player.getUniqueId()))
+			if(result.contains(joiner.getUUID()))
 			{
-				player.sendMessage(org.bukkit.ChatColor.RED + "You are already in a game!");
-				return;
-			}
-
-			allPlayers.add(player.getUniqueId());
-			playingPlayers.add(player.getUniqueId());
-
-			if(teamRed.getPlayers().size() <= teamBlue.getPlayers().size())
-			{
-				teamRed.addPlayer(player);
-				this.sendGameMessage(org.bukkit.ChatColor.AQUA + player.getName() + org.bukkit.ChatColor.GRAY + " has joined "
-						+ teamRed.getTeamName() + " (" + lobbyPlayers.size() + "/" + MAX_PLAYERS + ")");
-
-				PlayerManager.addPlayer(player, teamRed, this);
-			}
-
-			else
-			{
-				teamBlue.addPlayer(player);
-				this.sendGameMessage(org.bukkit.ChatColor.AQUA + player.getName() + org.bukkit.ChatColor.GRAY + " has joined "
-						+ teamBlue.getTeamName() + " (" + lobbyPlayers.size() + "/" + MAX_PLAYERS + ")");
-
-				PlayerManager.addPlayer(player, teamBlue, this);
-			}
-		}
-		PlayerRollbackManager.save(player);
-	}
-
-	public void rejoinPlayer(Player player)
-	{
-		//player rejoin midgame
-		if(playingPlayers.contains(player.getUniqueId()))
-		{
-			player.sendMessage(ChatColor.RED + "You are already in the game!");
-			return;
-		}
-
-		if(!allPlayers.contains(player.getUniqueId()))
-		{
-			player.sendMessage(ChatColor.RED + "There's no game for you to rejoin!");
-			return;
-		}
-
-
-		//Add player back to their team
-		if(PlayerManager.toOceanPlayer(player).getPlayerTeam().getTeamName().equals("Red Team"))
-		{
-			teamRed.getPlayers().add(player.getUniqueId());
-
-			this.getBoardManager().addPlayerToTeamRed(player);
-			this.sendGameMessage(ChatColor.RED + player.getName() + ChatColor.GRAY + " has rejoined.");
-		}
-		else
-		{
-			teamBlue.getPlayers().add(player.getUniqueId());
-
-			this.getBoardManager().addPlayerToTeamBlue(player);
-			this.sendGameMessage(ChatColor.BLUE + player.getName() + ChatColor.GRAY + " has rejoined.");
-		}
-
-		PlayerManager.toOceanPlayer(player).killPlayer(null);
-
-		//Register player again
-		try
-		{
-			GameNPCSetupManager.registerPlayer(player);
-		}
-		catch(Exception e)
-		{
-
-		}
-		playingPlayers.add(player.getUniqueId());
-
-		//PlayerManager.toOceanPlayer(player).respawnPlayer();
-
-		this.getBoardManager().addPlayer(player.getUniqueId());
-		LootChestManager.allLootChests
-				.stream()
-				.filter(chest -> chest.getUUID().equals(player.getUniqueId()))
-				.forEach(lootChest -> lootChest.displayHologram(player));
-	}
-
-	public void quitPlayer(Player player)
-	{
-		if(isStarted)
-		{
-			//player quit mid-game
-			if(!playingPlayers.contains(player.getUniqueId()))
-			{
-				player.sendMessage(ChatColor.RED + "You are not in a game!");
-				return;
-			}
-
-			Bukkit.broadcastMessage(ChatColor.RED + player.getName() + ChatColor.GRAY + " has quit.");
-			playingPlayers.remove(player.getUniqueId());
-			GameNPCSetupManager.unRegisterPlayer(player);
-
-			//remove player from their team
-			this.getBoardManager().removePlayerFromAllTeams(player);
-
-			if(teamRed.getPlayers().contains(player.getUniqueId()))
-			{
-				teamRed.removePlayer(player);
+				for(UUID uuid : joiner.getAllPlayers())
+				{
+					teamRed.addPlayer(Bukkit.getPlayer(uuid));
+				}
 			}
 			else
 			{
-				teamBlue.removePlayer(player);
+				for(UUID uuid : joiner.getAllPlayers())
+				{
+					teamBlue.addPlayer(Bukkit.getPlayer(uuid));
+				}
 			}
-
 		}
-		else
-		{
-			//player quit before/after game
-			if(!lobbyPlayers.contains(player.getUniqueId()))
-			{
-				player.sendMessage(ChatColor.RED + "You are not in a game!");
-				return;
-			}
-
-			lobbyPlayers.remove(player.getUniqueId());
-
-			GameNPCSetupManager.unRegisterPlayer(player);
-
-			if(teamRed.getPlayers().contains(player.getUniqueId()))
-			{
-				teamRed.removePlayer(player);
-			}
-			else
-			{
-				teamBlue.removePlayer(player);
-			}
-
-			Bukkit.broadcastMessage(ChatColor.RED + player.getName() + ChatColor.GRAY + " has quit.");
-		}
-
-		if(this.getBoardManager() == null) return;
-		this.getBoardManager().removePlayer(player);
 	}
 
 	public boolean canGameStart()
 	{
-		//return lobbyPlayers.size() >= MIN_PLAYERS && teamRed.getPlayers().size() > 0 && teamBlue.getPlayers().size() > 0;
-		return lobbyPlayers.size() >= MIN_PLAYERS;
+		if(gameJoiners.size() == 0) return false;
+		if(lobbyPlayers.size() < MIN_PLAYERS) return false;
+
+		if(gameJoiners.size() >= 2)
+		{
+			for(int i = 0; i < gameJoiners.size() - 1; i++)
+			{
+				if(!gameJoiners.get(i).getParty().getLeader().getUniqueId().equals(gameJoiners.get(i + 1).getParty().getLeader().getUniqueId()))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	public boolean canJoinServer()
@@ -515,7 +341,11 @@ public class GameManager {
 			Bukkit.getPlayer(uuid).sendMessage(messages);
 		}
 	}
-	
+
+	public List<GameJoiner> getJoiners()
+	{
+		return this.gameJoiners;
+	}
 	public GameState getGameState()
 	{
 		return this.state;
@@ -695,6 +525,17 @@ public class GameManager {
 
 	public Location[] getLobbyLocations()
 	{
-		return new Location[]{this.lobbyCornerOne, lobbyCornerTwo};
+		return new Location[] {this.getIslandManager().getIslands().get(0).getWaitCornerOne(),
+				this.getIslandManager().getIslands().get(0).getWaitCornerTwo()};
+	}
+
+	public OceanJoinHandler getJoinHandler()
+	{
+		return this.joinHandler;
+	}
+
+	public OceanRejoinHandler getRejoinHandler()
+	{
+		return this.rejoinHandler;
 	}
 }

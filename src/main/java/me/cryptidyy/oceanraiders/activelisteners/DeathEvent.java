@@ -146,7 +146,7 @@ public class DeathEvent implements Listener {
 
 			}
 
-			PlayerManager.toOceanPlayer(target).setOnDamageCheckCooldown(true);
+			PlayerManager.toOceanPlayer(player).setOnDamageCheckCooldown(true);
 		}
 		
 	}
@@ -309,7 +309,7 @@ public class DeathEvent implements Listener {
 	
 	public void resetPlayer(Player player, Player killer)
 	{
-		PlayerManager.toOceanPlayer(player).killPlayer(killer);
+		PlayerManager.toOceanPlayer(player).killPlayer(killer, 5);
 		PlayerManager.toOceanPlayer(player).setOnDamageCheckCooldown(false);
 	}
 }

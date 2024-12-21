@@ -190,12 +190,13 @@ public class ItemBuilder {
 	}
 
 	/**
-	 * Sets infinity durability on the item by setting the durability to
-	 * Short.MAX_VALUE.
+	 * Sets infinity durability on the item
 	 */
-	@SuppressWarnings("deprecation")
+
 	public ItemBuilder setInfinityDurability() {
-		is.setDurability(Short.MAX_VALUE);
+		ItemMeta im = is.getItemMeta();
+		im.setUnbreakable(true);
+		is.setItemMeta(im);
 		return this;
 	}
 

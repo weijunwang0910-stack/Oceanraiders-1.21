@@ -116,7 +116,7 @@
 enchants:
   CHESTPLATE:
     generic: true
-    exclude: 
+    exclude:
       - "GOLDEN_CHESTPLATE"
       - "LEATHER_CHESTPLATE"
     enchantments:
@@ -152,7 +152,7 @@ enchants:
         startingprice: 1
   LEGGINGS:
     generic: true
-    exclude: 
+    exclude:
       - "GOLDEN_LEGGINGS"
       - "LEATHER_LEGGINGS"
     enchantments:
@@ -167,7 +167,7 @@ enchants:
         startingprice: 1
       PROTECTION_EXPLOSIONS:
         maxlevel: 4
-        startingprice: 1 
+        startingprice: 1
   GOLDEN_LEGGINGS:
     generic: false
     enchantments:
@@ -188,7 +188,7 @@ enchants:
         startingprice: 1
   BOOTS:
     generic: true
-    exclude: 
+    exclude:
       - "GOLDEN_BOOTS"
       - "LEATHER_BOOTS"
     enchantments:
@@ -208,9 +208,9 @@ enchants:
         maxlevel: 4
         startingprice: 1
       DEPTH_STRIDER:
-        maxlevel: 4
+        maxlevel: 3
         startingprice: 1
-        
+
   GOLDEN_BOOTS:
     generic: false
     enchantments:
@@ -233,9 +233,9 @@ enchants:
         maxlevel: 4
         startingprice: 1
       DEPTH_STRIDER:
-        maxlevel: 4
+        maxlevel: 3
         startingprice: 1
-        
+
   SWORD:
     generic: true
     enchantments:
@@ -257,9 +257,5 @@ enchants:
       DAMAGE_ALL:
         maxlevel: 5
         startingprice: 2
-        startingprice: 2
-      SWEEPING_EDGE:
-        maxlevel: 3
-        startingprice: 1
       
    

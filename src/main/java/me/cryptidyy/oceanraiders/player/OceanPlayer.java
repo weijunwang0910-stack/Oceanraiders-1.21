@@ -99,29 +99,40 @@ public class OceanPlayer {
 		{
 			player.teleport(islandManager.findIsland("Red Island").get().getSpawnLoc());
 			
-			player.getInventory().setHelmet(new ItemBuilder(Material.LEATHER_HELMET).setLeatherArmorColor(Color.RED).toItemStack());
-			player.getInventory().setChestplate(new ItemBuilder(Material.LEATHER_CHESTPLATE).setLeatherArmorColor(Color.RED).toItemStack());
-			player.getInventory().setLeggings(new ItemBuilder(Material.LEATHER_LEGGINGS).setLeatherArmorColor(Color.RED).toItemStack());
-			player.getInventory().setBoots(new ItemBuilder(Material.LEATHER_BOOTS).setLeatherArmorColor(Color.RED).toItemStack());
+			player.getInventory().setHelmet(new ItemBuilder(Material.LEATHER_HELMET).setLeatherArmorColor(Color.RED).setInfinityDurability().toItemStack());
+			player.getInventory().setChestplate(new ItemBuilder(Material.LEATHER_CHESTPLATE).setLeatherArmorColor(Color.RED).setInfinityDurability().toItemStack());
+			player.getInventory().setLeggings(new ItemBuilder(Material.LEATHER_LEGGINGS).setLeatherArmorColor(Color.RED).setInfinityDurability().toItemStack());
+			player.getInventory().setBoots(new ItemBuilder(Material.LEATHER_BOOTS).setLeatherArmorColor(Color.RED).setInfinityDurability().toItemStack());
 		}
 		else
 		{
 			player.teleport(islandManager.findIsland("Blue Island").get().getSpawnLoc());
 			
-			player.getInventory().setHelmet(new ItemBuilder(Material.LEATHER_HELMET).setLeatherArmorColor(Color.BLUE).toItemStack());
-			player.getInventory().setChestplate(new ItemBuilder(Material.LEATHER_CHESTPLATE).setLeatherArmorColor(Color.BLUE).toItemStack());
-			player.getInventory().setLeggings(new ItemBuilder(Material.LEATHER_LEGGINGS).setLeatherArmorColor(Color.BLUE).toItemStack());
-			player.getInventory().setBoots(new ItemBuilder(Material.LEATHER_BOOTS).setLeatherArmorColor(Color.BLUE).toItemStack());
+			player.getInventory().setHelmet(new ItemBuilder(Material.LEATHER_HELMET).setLeatherArmorColor(Color.BLUE).setInfinityDurability().toItemStack());
+			player.getInventory().setChestplate(new ItemBuilder(Material.LEATHER_CHESTPLATE).setLeatherArmorColor(Color.BLUE).setInfinityDurability().toItemStack());
+			player.getInventory().setLeggings(new ItemBuilder(Material.LEATHER_LEGGINGS).setLeatherArmorColor(Color.BLUE).setInfinityDurability().toItemStack());
+			player.getInventory().setBoots(new ItemBuilder(Material.LEATHER_BOOTS).setLeatherArmorColor(Color.BLUE).setInfinityDurability().toItemStack());
 		}
 	}
-	
-	public void killPlayer(Player killer)
+
+	public void killPlayer(Player killer, int respawnTimeInSeconds)
 	{
 		Player player = Bukkit.getPlayer(playerUUID);
 		
 		Location respawnLocation = player.getLocation().add(0, 50, 0);
 		ItemStack[] contents = player.getInventory().getContents();
-		
+
+		if(killer != null)
+		{
+			for(ItemStack transferedItems : findTransferedItems())
+			{
+				//give killer the target's items and send message
+				killer.getInventory().addItem(transferedItems);
+				killer.sendMessage(ChatColor.AQUA + "+" + transferedItems.getAmount()
+						+ "x " + transferedItems.getType().toString().toLowerCase());
+			}
+		}
+
 		isRespawning = true;
 		
 		player.setGameMode(GameMode.ADVENTURE);
@@ -133,17 +144,6 @@ public class OceanPlayer {
 		player.setFlying(true);
 		player.setHealth(20);
 		player.setFoodLevel(20);
-		
-		if(killer != null)
-		{
-			for(ItemStack transferedItems : findTransferedItems())
-			{
-				//give killer the target's items and send message
-				killer.getInventory().addItem(transferedItems);
-				killer.sendMessage(ChatColor.AQUA + "+" + transferedItems.getAmount() 
-					+ " " + transferedItems.getType().toString().toLowerCase());
-			}
-		}
 
 		plugin.getGameManager().getPlayingPlayers().forEach(uuid -> {
 			Bukkit.getPlayer(uuid).hidePlayer(plugin, player);
@@ -152,9 +152,10 @@ public class OceanPlayer {
 		GameNPCSetupManager.unRegisterPlayer(player);
 		RespawnEvent.addPlayer(player);
 
+		//Respawn the player
 		respawnTask = Bukkit.getScheduler().runTaskTimer(plugin, new Runnable()
 		{
-			int seconds = 5;
+			int seconds = respawnTimeInSeconds;
 
 			@Override
 			public void run() {
@@ -264,17 +265,17 @@ public class OceanPlayer {
 		
 		if(playerTeam.getTeamName().equalsIgnoreCase("Red Team"))
 		{
-			player.teleport(islandManager.findIsland("Red Island").get().getSpawnLoc());
+			player.teleport(islandManager.findIsland("Red Island").get().getRespawnLoc());
 		}
 		else
 		{
-			player.teleport(islandManager.findIsland("Blue Island").get().getSpawnLoc());
+			player.teleport(islandManager.findIsland("Blue Island").get().getRespawnLoc());
 		}
 		
 		Bukkit.getScheduler().runTaskLater(plugin, (bukkitTask) -> {
 			this.setSpawnProtected(false);
 			player.setInvulnerable(false);
-		}, 20 * 5);
+		}, 20 * 8);
 	}
 	
 	public void resetPlayer(GameManager manager)

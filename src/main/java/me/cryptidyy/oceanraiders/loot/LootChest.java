@@ -68,6 +68,10 @@ public class LootChest {
 	{
 		if(inv == null)
 			Bukkit.broadcastMessage("inv is null!");
+
+		//Add at least 1 item
+		inv.addItem(lootTable.getRandomItem());
+
 		for(int i = 0; i < amount; i++)
 		{
 			inv.addItem(lootTable.getRandom());

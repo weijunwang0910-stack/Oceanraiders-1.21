@@ -1,13 +1,13 @@
 # CUSTOMITEM:
-  # amount: item amount
-  # currency:
-    # material: item type
-    # price: price
-  # inventoryname: armor/sword/bow
-  # slot: slot
-  # lore:
-    # - "1"
-    # - "2"
+# amount: item amount
+# currency:
+# material: item type
+# price: price
+# inventoryname: armor/sword/bow
+# slot: slot
+# lore:
+# - "1"
+# - "2"
 globalsettings:
   lore:
     - ""
@@ -81,4 +81,27 @@ BoatSinker:
   lore:
     - " "
     - "&7Throw this item at boats"
-    - "and they will sink."
+    - "&7and they will sink."
+WholeCake:
+  amount: 1
+  currency:
+    material: EMERALD
+    price: 8
+    color: GREEN
+  inventoryname: food
+  slot: 22
+  lore:
+    - "&7Restores 7 Food Bars + 2.8 Saturation."
+InvisibilityPotion:
+  amount: 1
+  currency:
+    material: GLOWSTONE_DUST
+    price: 3
+    color: GOLD
+  inventoryname: drinkShop
+  slot: 24
+  lore:
+    - "&9Invisibility (0:30)"
+    - ""
+    - "&7Use potions with special effects"
+    - "&7to surprise your opponents."

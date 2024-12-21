@@ -3,6 +3,7 @@ package me.cryptidyy.oceanraiders.loot;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 public class LootTable {
@@ -22,11 +23,20 @@ public class LootTable {
 		{
 			Entry entry = entries.get(i + 1);
 			if(entry.getChance() > random) return entries.get(i).getItem();
-			
-			
 		}
-		
 		return entries.get(entries.size() - 1).getItem();
+	}
+
+	//Guarantees at least one item in the loot chest
+	public ItemStack getRandomItem()
+	{
+		for(int i = 0; i < entries.size(); i++)
+		{
+			Entry entry = entries.get(i);
+			if(!entry.getItem().getType().equals(Material.AIR)) return entry.getItem();
+		}
+
+		return new ItemStack(Material.AIR);
 	}
 	
 	public static class LootTableBuilder

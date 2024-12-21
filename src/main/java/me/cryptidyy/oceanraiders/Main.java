@@ -47,7 +47,7 @@ public class Main extends JavaPlugin {
 		this.currentMap = new LocalGameMap(gameMapFile, "oceanraiders", true);
 		this.gameManager = new GameManager(this);
 
-		Bukkit.getScheduler().runTask(this, () ->
+		Bukkit.getScheduler().runTaskLater(this, () ->
 		{
 			this.islandManager = new IslandManager(this);
 			this.itemManager = new OceanItemManager(this);
@@ -106,7 +106,7 @@ public class Main extends JavaPlugin {
 			//GameServer implements GameServerProvider
 			//SQL listens for server status updates
 			API.getInstance().getStatusUpdater().setStarted(true);
-		});
+		}, 20 * 2);
 	}
 	
 	@Override

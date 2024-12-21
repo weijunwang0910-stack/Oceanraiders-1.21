@@ -69,10 +69,9 @@ public class NPCShopManager {
 	{
 		for(UUID id : playerToBlacksmithMap.keySet())
 		{
-			Player player = Bukkit.getPlayer(id);
-			playerToBlacksmithMap.get(player.getUniqueId()).getPlayerPurchasedItems().clear();
-			playerToFoodMap.get(player.getUniqueId()).getPlayerPurchasedItems().clear();
-			playerToPotionMap.get(player.getUniqueId()).getPlayerPurchasedItems().clear();
+			playerToBlacksmithMap.get(id).getPlayerPurchasedItems().clear();
+			playerToFoodMap.get(id).getPlayerPurchasedItems().clear();
+			playerToPotionMap.get(id).getPlayerPurchasedItems().clear();
 		}
 
 	}

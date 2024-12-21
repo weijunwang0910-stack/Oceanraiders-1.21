@@ -10,6 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import me.cryptidyy.oceanraiders.utility.ItemBuilder;
@@ -38,7 +39,16 @@ public class IslandSetupManager implements Listener {
 	private final String ADD_LOCATION_DOCKS = ChatColor.GREEN + "Add Dock Location " + ChatColor.GRAY+ "(Right Click)";
 	private final String SET_LOCATION_DOCKS = ChatColor.GREEN + "Finish and save Dock Locations " + ChatColor.GRAY+ "(Right Click)";
 
-	private List<Location> dockLocations = new ArrayList<>();
+	private final String SET_LOCATION_CORNER_ONE_WAIT = ChatColor.GREEN + "Set Waiting Lobby Corner 1 " + ChatColor.GRAY + "(Right Click)";
+
+	private final String SET_LOCATION_CORNER_TWO_WAIT = ChatColor.GREEN + "Set Waiting Lobby Corner 2 " + ChatColor.GRAY + "(Right Click)";
+
+	private final String SET_LOCATION_RESPAWN = ChatColor.GREEN + "Set Respawn Location " + ChatColor.GRAY + "(Right Click)";
+
+	private final String ADD_REMOVE_LOCATION_LOOT = ChatColor.GREEN + "Add/Remove General Loot Container " + ChatColor.GRAY + "(Right Click to add, Left Click to remove)";
+
+	private final String SET_LOCATION_LOOT = ChatColor.GREEN + "Save General Loot Containers " + ChatColor.GRAY + "(Right Click)";
+
 
 	public IslandSetupManager(IslandManager islandManager)
 	{
@@ -104,14 +114,28 @@ public class IslandSetupManager implements Listener {
 		player.getInventory().addItem(new ItemBuilder(Material.OAK_BOAT)
 				.setDisplayName(SET_LOCATION_DOCKS)
 				.toItemStack());
+		player.getInventory().addItem(new ItemBuilder(Material.GOLDEN_SHOVEL)
+				.setDisplayName(SET_LOCATION_CORNER_ONE_WAIT)
+				.toItemStack());
+		player.getInventory().addItem(new ItemBuilder(Material.GOLDEN_SHOVEL)
+				.setDisplayName(SET_LOCATION_CORNER_TWO_WAIT)
+				.toItemStack());
+		player.getInventory().addItem(new ItemBuilder(Material.GOLDEN_SHOVEL)
+				.setDisplayName(SET_LOCATION_RESPAWN)
+				.toItemStack());
+		player.getInventory().addItem(new ItemBuilder(Material.BARREL)
+				.setDisplayName(ADD_REMOVE_LOCATION_LOOT)
+				.toItemStack());
+		player.getInventory().addItem(new ItemBuilder(Material.DIAMOND_PICKAXE)
+				.setDisplayName(SET_LOCATION_LOOT)
+				.toItemStack());
 		player.getInventory().addItem(new ItemBuilder(Material.LIME_DYE)
 				.setDisplayName(SAVE_ITEM_NAME)
 				.toItemStack());
 		player.getInventory().addItem(new ItemBuilder(Material.BARRIER)
 				.setDisplayName(EXIT_ITEM_NAME)
 				.toItemStack());
-		
-		
+
 		player.sendMessage(ChatColor.GREEN + "Moved to setup mode for " + tempIsland.getDisplayName());
 	}
 	
@@ -198,6 +222,8 @@ public class IslandSetupManager implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onInteract(PlayerInteractEvent event)
 	{
+
+
 		if(!inSetupMode(event.getPlayer())) return;
 		if(!event.hasItem()) return;
 		//if(!event.getItem().hasItemMeta()) return;
@@ -205,6 +231,9 @@ public class IslandSetupManager implements Listener {
 		Player player = event.getPlayer();
 		TemporaryIsland tempIsland = playerToTempIslandMap.get(player.getUniqueId());
 		String itemName = event.getItem().getItemMeta().getDisplayName();
+
+		List<Location> dockLocations = tempIsland.getDockLocations();
+		List<Location> lootLocations = tempIsland.getLootContainers();
 
 		if(itemName.equalsIgnoreCase(EXIT_ITEM_NAME))
 		{
@@ -305,6 +334,66 @@ public class IslandSetupManager implements Listener {
 			dockLocations.clear();
 
 		}
+		else if(itemName.equalsIgnoreCase(SET_LOCATION_CORNER_ONE_WAIT))
+		{
+			if(event.getClickedBlock() == null)
+			{
+				player.sendMessage(ChatUtil.format("&cPlease click on a block for this setting!"));
+				return;
+			}
+			tempIsland.setWaitCornerOne(event.getClickedBlock().getLocation());
+			player.sendMessage(ChatColor.AQUA + "Set waiting lobby corner 1 location!");
+		}
+		else if(itemName.equalsIgnoreCase(SET_LOCATION_CORNER_TWO_WAIT))
+		{
+			if(event.getClickedBlock() == null)
+			{
+				player.sendMessage(ChatUtil.format("&cPlease click on a block for this setting!"));
+				return;
+			}
+			tempIsland.setWaitCornerTwo(event.getClickedBlock().getLocation());
+			player.sendMessage(ChatColor.AQUA + "Set waiting lobby corner 2 location!");
+		}
+		else if(itemName.equalsIgnoreCase(SET_LOCATION_RESPAWN))
+		{
+			tempIsland.setRespawnLoc(player.getLocation());
+			player.sendMessage(ChatColor.AQUA + "Set respawn location!");
+		}
+		else if(itemName.equalsIgnoreCase(ADD_REMOVE_LOCATION_LOOT))
+		{
+			if(event.getClickedBlock() == null)
+			{
+				player.sendMessage(ChatUtil.format("&cPlease click on a block for this setting!"));
+				return;
+			}
+
+			if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK))
+			{
+				if(containsLocation(lootLocations, event.getClickedBlock().getLocation()))
+				{
+					player.sendMessage(ChatColor.RED + "Location already exists!");
+					return;
+				}
+				lootLocations.add(event.getClickedBlock().getLocation());
+				player.sendMessage(ChatColor.GREEN + "Added loot container location!");
+			}
+			else if(event.getAction().equals(Action.LEFT_CLICK_BLOCK))
+			{
+				if(!containsLocation(lootLocations, event.getClickedBlock().getLocation()))
+				{
+					player.sendMessage(ChatColor.RED + "No loot container set!");
+					return;
+				}
+				lootLocations.remove(event.getClickedBlock().getLocation());
+				player.sendMessage(ChatColor.RED + "Removed loot container location!");
+			}
+		}
+		else if(itemName.equalsIgnoreCase(SET_LOCATION_LOOT))
+		{
+			tempIsland.setLootContainers(new ArrayList<>(lootLocations));
+			player.sendMessage(ChatColor.AQUA + "Saved all loot container locations!");
+			lootLocations.clear();
+		}
 		else if(itemName.equalsIgnoreCase(SAVE_ITEM_NAME))
 		{
 			try
@@ -337,6 +426,15 @@ public class IslandSetupManager implements Listener {
 		}
 		
 		event.setCancelled(true);
+	}
+
+	private boolean containsLocation(List<Location> list, Location newLoc)
+	{
+		for(Location loc : list)
+		{
+			if(Double.compare(newLoc.getX(), loc.getX()) == 0 && Double.compare(newLoc.getY(), loc.getY()) == 0 && Double.compare(newLoc.getZ(), loc.getZ()) == 0) return true;
+		}
+		return false;
 	}
 	
 }

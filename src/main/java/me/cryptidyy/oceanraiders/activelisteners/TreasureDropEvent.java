@@ -5,11 +5,14 @@ import me.cryptidyy.oceanraiders.utility.ChatUtil;
 import me.cryptidyy.oceanraiders.utility.TreasureMessages;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -29,7 +32,41 @@ public class TreasureDropEvent implements Listener {
 		this.plugin = plugin;
 		this.manager = this.plugin.getGameManager();
 	}
-	
+	@EventHandler
+	public void onTreasureRemove(final InventoryClickEvent e)
+	{
+		if (!(e.getWhoClicked() instanceof Player)) return;
+
+		final Player p = (Player) e.getWhoClicked();
+		if(!PlayerManager.toOceanPlayer(p).hasBlueTreasure() && !PlayerManager.toOceanPlayer(p).hasRedTreasure()) return;
+
+		final Inventory inv = e.getInventory();
+		final ItemStack current = e.getCurrentItem();
+		final ItemStack cursor = e.getCursor();
+
+		if (current.getType().equals(Material.AIR))
+		{
+			// player put item to inventory
+			//p.sendMessage("put");
+			e.setCancelled(true);
+			return;
+		}
+		else if (!current.getType().equals(Material.AIR) && cursor.getType().equals(Material.AIR))
+		{
+			// player take item from inventory
+			//p.sendMessage("take");
+			e.setCancelled(true);
+			return;
+		}
+		else if (!current.getType().equals(Material.AIR) && !cursor.getType().equals(Material.AIR))
+		{
+			// player swap item in inventory
+			//p.sendMessage("swap");
+			e.setCancelled(true);
+			return;
+		}
+	}
+
 	@EventHandler
 	public void onDrop(PlayerDropItemEvent event)
 	{

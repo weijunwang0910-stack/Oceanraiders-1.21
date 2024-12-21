@@ -9,6 +9,7 @@ healing2:
   material: SPLASH_POTION
   amount: 1
   slot: 19
+  displayname: "Instant Healing Potion"
   currency:
     material: GLOWSTONE_DUST
     price: 1
@@ -17,7 +18,7 @@ healing2:
     HEAL:
       level: 2
       duration: 0
-      displayname: "Instant Healing Potion"
+
   lore:
     - "&9Instant Healing II"
     - ""
@@ -25,6 +26,7 @@ healing4:
   material: SPLASH_POTION
   amount: 1
   slot: 28
+  displayname: "Instant Healing Potion"
   currency:
     material: GLOWSTONE_DUST
     price: 3
@@ -33,7 +35,6 @@ healing4:
     HEAL:
       level: 4
       duration: 0
-      displayname: "Instant Healing Potion"
   lore:
     - "&9Instant Healing IV"
     - ""
@@ -41,6 +42,7 @@ poison1:
   material: SPLASH_POTION
   amount: 1
   slot: 20
+  displayname: "Poison Potion"
   currency:
     material: GLOWSTONE_DUST
     price: 2
@@ -49,7 +51,6 @@ poison1:
     POISON:
       level: 1
       duration: 10
-      displayname: "Poison Potion"
   lore:
     - "&cPoison I (00:10)"
     - ""
@@ -57,6 +58,7 @@ poison2:
   material: SPLASH_POTION
   amount: 1
   slot: 29
+  displayname: "Poison Potion"
   currency:
     material: GLOWSTONE_DUST
     price: 4
@@ -65,7 +67,6 @@ poison2:
     POISON:
       level: 2
       duration: 10
-      displayname: "Poison Potion"
   lore:
     - "&cPoison II (00:10)"
     - ""
@@ -73,6 +74,7 @@ insta_damage1:
   material: SPLASH_POTION
   amount: 1
   slot: 21
+  displayname: "Harming Potion"
   currency:
     material: GLOWSTONE_DUST
     price: 1
@@ -81,7 +83,6 @@ insta_damage1:
     HARM:
       level: 1
       duration: 0
-      displayname: "Harming Potion"
   lore:
     - "&cInstant Damage I"
     - ""
@@ -89,6 +90,7 @@ insta_damage2:
   material: SPLASH_POTION
   amount: 1
   slot: 30
+  displayname: "Harming Potion"
   currency:
     material: GLOWSTONE_DUST
     price: 2
@@ -97,7 +99,6 @@ insta_damage2:
     HARM:
       level: 2
       duration: 0
-      displayname: "Harming Potion"
   lore:
     - "&cInstant Damage II"
     - ""
@@ -105,6 +106,7 @@ weak1:
   material: SPLASH_POTION
   amount: 1
   slot: 22
+  displayname: "Weakness Potion"
   currency:
     material: GLOWSTONE_DUST
     price: 4
@@ -113,14 +115,14 @@ weak1:
     WEAKNESS:
       level: 1
       duration: 90
-      displayname: "Weakness Potion"
   lore:
     - "&cWeakness I (1:30)"
-    - ""  
+    - ""
 weak4:
   material: SPLASH_POTION
   amount: 1
   slot: 31
+  displayname: "Weakness Potion"
   currency:
     material: GLOWSTONE_DUST
     price: 8
@@ -129,7 +131,6 @@ weak4:
     WEAKNESS:
       level: 4
       duration: 45
-      displayname: "Weakness Potion"
   lore:
     - "&cWeakness IV (00:45)"
     - ""

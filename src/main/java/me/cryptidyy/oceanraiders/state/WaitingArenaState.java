@@ -2,8 +2,7 @@ package me.cryptidyy.oceanraiders.state;
 
 import me.cryptidyy.coreapi.api.API;
 import me.cryptidyy.oceanraiders.events.WaitingStateListenerProvider;
-import me.cryptidyy.oceanraiders.sql.QueueListener;
-import me.cryptidyy.oceanraiders.sql.ServerSQL;
+import me.cryptidyy.oceanraiders.lobbylisteners.OceanJoinHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -13,9 +12,10 @@ import net.md_5.bungee.api.ChatColor;
 
 public class WaitingArenaState extends GameState {
 
-	private QueueListener queueListener;
+
 	private BukkitTask startCheck;
 	private GameManager manager;
+	private OceanJoinHandler joinHandler;
 	
 	@Override
 	public void onEnable(Main plugin)
@@ -25,7 +25,9 @@ public class WaitingArenaState extends GameState {
 		API.getInstance().getStatusUpdater().setWaiting(true);
 
 		manager = plugin.getGameManager();
-		scheduleQueuListener();
+		joinHandler = manager.getJoinHandler();
+		joinHandler.setListening(true);
+		//scheduleQueueListener();
 
 		startCheck = Bukkit.getScheduler().runTaskTimer(plugin, () ->
 		{
@@ -40,17 +42,11 @@ public class WaitingArenaState extends GameState {
 		}, 0, 8);
 	}
 
-	public void scheduleQueuListener()
-	{
-		queueListener = manager.getQueueListener();
-		//if(queueListener.getTaskId() == -1)
-		queueListener.setListening(true);
-	}
-
 	@Override
 	public void onDisable()
 	{
-		queueListener.setListening(false);
+		super.onDisable();
+		joinHandler.setListening(false);
 		startCheck.cancel();
 		//API.getInstance().getStatusUpdater().setWaiting(false);
 	}

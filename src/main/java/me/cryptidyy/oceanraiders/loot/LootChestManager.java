@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import me.cryptidyy.oceanraiders.islands.Island;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -29,14 +31,18 @@ public class LootChestManager {
 	private List<LootChest> lootChestThree = new ArrayList<>();
 	
 	public static List<LootChest> allLootChests = new ArrayList<>();
+
+	private List<GenericLootContainer> genericLootContainers = new ArrayList<>();
 	
 	private LootTable lootOne;
 	private LootTable lootTwo;
 	private LootTable lootThree;
+	private LootTable genericLootTable;
 	
 	private String[] lootNames = new String[3];
 	
 	private final DataManager lootConfig;
+	private final DataManager genericLootConfig;
 	
 	private int generateTimes = 0;
 	private int refreshSeconds = 0;
@@ -141,6 +147,34 @@ public class LootChestManager {
 			allLootChests.add(blueLootchestThree);
 		}
 
+		genericLootConfig = new DataManager(this.plugin, "genericloot.yml");
+		int generateTimes = genericLootConfig.getConfig().getInt("generateTimes");
+		ConfigurationSection lootSection = genericLootConfig.getConfig().getConfigurationSection("loot");
+
+		List<ItemStack> items = new ArrayList<>();
+		List<Integer> weights = new ArrayList<>();
+
+		for(String materialName : lootSection.getKeys(false))
+		{
+			ConfigurationSection itemData = lootSection.getConfigurationSection(materialName);
+			if(Material.valueOf(materialName) == null)
+				Bukkit.getLogger().severe("Invalid material name in loot.yml: " + materialName);
+
+			items.add(new ItemBuilder(Material.valueOf(materialName), itemData.getInt("amount")).toItemStack());
+			weights.add(itemData.getInt("weight"));
+
+		}
+		genericLootTable = new LootTable.LootTableBuilder().addList(items, weights).build();
+
+		for(Island island : plugin.getIslandManager().getIslands())
+		{
+			for(Location loc : island.getLootContainers())
+			{
+				if(!loc.getBlock().getType().equals(Material.CHEST) && !loc.getBlock().getType().equals(Material.BARREL)) continue;
+				GenericLootContainer lootContainer = new GenericLootContainer(loc, genericLootTable, generateTimes);
+				genericLootContainers.add(lootContainer);
+			}
+		}
 	}
 	
 	public List<LootChest> getLootChest(int number)
@@ -191,6 +225,11 @@ public class LootChestManager {
 
 	public int getRefreshSeconds() {
 		return refreshSeconds;
+	}
+
+	public List<GenericLootContainer> getGenericLootContainers()
+	{
+		return genericLootContainers;
 	}
 
 }

@@ -16,6 +16,7 @@ me\cryptidyy\oceanraiders\player\OceanPlayer.class
 me\cryptidyy\oceanraiders\shop\PotionShop.class
 me\cryptidyy\oceanraiders\loot\LootRefresher.class
 me\cryptidyy\oceanraiders\npcs\ClickNPC.class
+me\cryptidyy\oceanraiders\sql\OceanQueueListener.class
 me\cryptidyy\oceanraiders\utility\PlayerRollbackManager.class
 me\cryptidyy\oceanraiders\activelisteners\LootChestEvent.class
 me\cryptidyy\oceanraiders\gamemap\GameMap.class
@@ -25,7 +26,9 @@ me\cryptidyy\oceanraiders\shop\ItemType.class
 me\cryptidyy\oceanraiders\customitems\CobwebWall$1.class
 me\cryptidyy\oceanraiders\loot\LootTable$LootTableBuilder.class
 me\cryptidyy\oceanraiders\activelisteners\BoatBoostEvent.class
+me\cryptidyy\oceanraiders\loot\GenericLootContainer.class
 me\cryptidyy\oceanraiders\activelisteners\PlayerAttackEvent.class
+me\cryptidyy\oceanraiders\lobbylisteners\OceanJoinHandler.class
 me\cryptidyy\oceanraiders\state\GameManager.class
 me\cryptidyy\oceanraiders\state\EndState.class
 me\cryptidyy\oceanraiders\shop\ItemEntryManager.class
@@ -44,10 +47,10 @@ me\cryptidyy\oceanraiders\activelisteners\TreasureTransactionEvent.class
 me\cryptidyy\oceanraiders\events\StateListenerProvider.class
 me\cryptidyy\oceanraiders\shop\EnchantFamily.class
 me\cryptidyy\oceanraiders\utility\ChatUtil.class
-me\cryptidyy\oceanraiders\lobbylisteners\JoinEvent.class
 me\cryptidyy\oceanraiders\customitems\CustomItemUser.class
 me\cryptidyy\oceanraiders\player\OceanTeam.class
 me\cryptidyy\oceanraiders\activelisteners\IntrudeEvent.class
+me\cryptidyy\oceanraiders\activelisteners\OceanRejoinHandler.class
 me\cryptidyy\oceanraiders\sql\ServerSQL.class
 me\cryptidyy\oceanraiders\state\ActiveArenaState.class
 me\cryptidyy\oceanraiders\state\StartCountdownState.class
@@ -93,7 +96,6 @@ me\cryptidyy\oceanraiders\shop\EnchantShop.class
 me\cryptidyy\oceanraiders\activelisteners\RemoveHelmetEvent.class
 me\cryptidyy\oceanraiders\customitems\BoatSinker$3.class
 me\cryptidyy\oceanraiders\utility\VelocityUtil.class
-me\cryptidyy\oceanraiders\activelisteners\RejoinEvent.class
 me\cryptidyy\oceanraiders\tickers\GameLoop.class
 me\cryptidyy\oceanraiders\Main.class
 me\cryptidyy\oceanraiders\loot\LootTable.class
@@ -105,7 +107,6 @@ me\cryptidyy\oceanraiders\npcs\PacketReader.class
 me\cryptidyy\oceanraiders\loot\Entry.class
 me\cryptidyy\oceanraiders\activelisteners\InvisWalkEvent.class
 me\cryptidyy\oceanraiders\npcs\FoodNPC.class
-me\cryptidyy\oceanraiders\sql\QueueListener.class
 me\cryptidyy\oceanraiders\commands\GameCommands.class
 me\cryptidyy\oceanraiders\loot\LootChestManager.class
 me\cryptidyy\oceanraiders\activelisteners\TreasureEvent.class

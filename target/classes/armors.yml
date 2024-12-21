@@ -1,13 +1,13 @@
 # ITEM:
-  # amount: Integer
-  # slot: Integer
-  # currency:
-    # material: MATERIAL
-    # price: Integer
-  # lore:
-   # - "line 1"
-   # - "line 2"
-   # ...
+# amount: Integer
+# slot: Integer
+# currency:
+# material: MATERIAL
+# price: Integer
+# lore:
+# - "line 1"
+# - "line 2"
+# ...
 
 globalsettings:
   lore:
@@ -24,7 +24,7 @@ CHAINMAIL_CHESTPLATE:
   persistent: true
   currency:
     material: EMERALD
-    price: 1
+    price: 2
   lore:
 CHAINMAIL_LEGGINGS:
   amount: 1
@@ -32,7 +32,7 @@ CHAINMAIL_LEGGINGS:
   persistent: true
   currency:
     material: EMERALD
-    price: 1
+    price: 2
   lore:
 CHAINMAIL_BOOTS:
   amount: 1
@@ -40,7 +40,7 @@ CHAINMAIL_BOOTS:
   persistent: true
   currency:
     material: EMERALD
-    price: 1
+    price: 2
   lore:
 IRON_CHESTPLATE:
   amount: 1

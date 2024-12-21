@@ -1,5 +1,6 @@
 package me.cryptidyy.oceanraiders.state;
 
+import me.cryptidyy.coreapi.api.API;
 import me.cryptidyy.oceanraiders.Main;
 import me.cryptidyy.oceanraiders.events.StateListenerProvider;
 import me.cryptidyy.oceanraiders.npcs.GameNPCSetupManager;
@@ -72,7 +73,7 @@ public class EndState extends GameState {
                 Player player = Bukkit.getPlayer(uuid);
                 if(player != null)
                     //teleport player to another game
-                    teleportPlayerToServer(plugin, player, "main");
+                    queueNextGame(player);
             });
 
             manager.getPlayingPlayers().clear();
@@ -86,7 +87,7 @@ public class EndState extends GameState {
 
             //shutdown server
             Bukkit.shutdown();
-        }, 8 * 20);
+        }, 15 * 20);
 
     }
 
@@ -101,12 +102,8 @@ public class EndState extends GameState {
         return null;
     }
 
-    public void teleportPlayerToServer(Main plugin, Player player, String serverName)
+    public void queueNextGame(Player player)
     {
-//        ByteArrayDataOutput out = ByteStreams.newDataOutput();
-//        out.writeUTF("Connect");
-//        out.writeUTF(serverName);
-//
-//        player.sendPluginMessage(plugin, "BungeeCord", out.toByteArray());
+        API.getInstance().queueGame(player.getUniqueId(), "oceanraiders");
     }
 }

@@ -51,6 +51,10 @@ public class IslandManager {
 				Location farmer = DataConfigUtil.readLocation(section.getConfigurationSection("farmer"));
 				Location witch = DataConfigUtil.readLocation(section.getConfigurationSection("witch"));
 				List<Location> docks = DataConfigUtil.readLocationList(section.getConfigurationSection("docks"));
+				Location waitCornerOne = DataConfigUtil.readLocation(section.getConfigurationSection("waitCornerOne"));
+				Location waitCornerTwo = DataConfigUtil.readLocation(section.getConfigurationSection("waitCornerTwo"));
+				Location respawnLoc = DataConfigUtil.readLocation(section.getConfigurationSection("respawnLoc"));
+				List<Location> lootContainers = DataConfigUtil.readLocationList(section.getConfigurationSection("lootContainers"));
 
 				//Shops:
 				//Farmer
@@ -71,14 +75,18 @@ public class IslandManager {
 						librarian,
 						farmer,
 						witch,
-						docks);
+						docks,
+						waitCornerOne,
+						waitCornerTwo,
+						respawnLoc,
+						lootContainers);
 				
 				islandList.add(island);
 			}
 		}
 		catch(Exception e)
 		{
-			
+			e.printStackTrace();
 		}
 
 		this.islandSetupManager = new IslandSetupManager(this);
@@ -111,7 +119,10 @@ public class IslandManager {
 		DataConfigUtil.saveLocation(island.getFarmer(), config.createSection(island.getConfigName() + ".farmer"));
 		DataConfigUtil.saveLocation(island.getWitch(), config.createSection(island.getConfigName() + ".witch"));
 		DataConfigUtil.saveLocationList(island.getDockLocations(), config.createSection(island.getConfigName() + ".docks"));
-		Bukkit.broadcastMessage(island.getDockLocations() + "");
+		DataConfigUtil.saveLocation(island.getWaitCornerOne(), config.createSection(island.getConfigName() + ".waitCornerOne"));
+		DataConfigUtil.saveLocation(island.getWaitCornerTwo(), config.createSection(island.getConfigName() + ".waitCornerTwo"));
+		DataConfigUtil.saveLocation(island.getRespawnLoc(), config.createSection(island.getConfigName() + ".respawnLoc"));
+		DataConfigUtil.saveLocationList(island.getLootContainers(), config.createSection(island.getConfigName() + ".lootContainers"));
 		
 		//Shops:
 		//Farmer

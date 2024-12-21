@@ -25,6 +25,12 @@ public class TemporaryIsland {
 	private Location blackSmith, librarian, farmer, witch;
 
 	private List<Location> docks;
+
+	private Location waitCornerOne;
+	private Location waitCornerTwo;
+	private Location respawnLoc;
+
+	private List<Location> lootContainers;
 	
 	//Shops:
 	//Farmer
@@ -48,7 +54,11 @@ public class TemporaryIsland {
 		this.librarian = null;
 		this.farmer = null;
 		this.witch = null;
-		this.docks = null;
+		this.docks = new ArrayList<>();
+		this.waitCornerOne = null;
+		this.waitCornerTwo = null;
+		this.respawnLoc = null;
+		this.lootContainers = new ArrayList<>();
 	}
 	
 	public TemporaryIsland(Island island)
@@ -68,13 +78,18 @@ public class TemporaryIsland {
 		this.farmer = island.getFarmer();
 		this.witch = island.getWitch();
 		this.docks = island.getDockLocations();
+		this.waitCornerOne = island.getWaitCornerOne();
+		this.waitCornerTwo = island.getWaitCornerTwo();
+		this.respawnLoc = island.getRespawnLoc();
+		this.lootContainers = island.getLootContainers();
 	}
 	
 	public Island toIsland()
 	{
 		if(spawnLoc == null || dropLoc == null || cornerOne == null || cornerTwo == null || chestLoc == null 
 				|| lootChestOne == null || lootChestTwo == null || lootChestThree == null || librarian == null
-				|| blackSmith == null || farmer == null || witch == null || docks == null)
+				|| blackSmith == null || farmer == null || witch == null || docks == null || waitCornerOne == null
+				|| waitCornerTwo == null || respawnLoc == null || lootContainers == null)
 		{
 			return null;
 		}
@@ -92,7 +107,11 @@ public class TemporaryIsland {
 				librarian,
 				farmer,
 				witch,
-				docks);
+				docks,
+				waitCornerOne,
+				waitCornerTwo,
+				respawnLoc,
+				lootContainers);
 	}
 	
 	public String getDisplayName() {
@@ -201,4 +220,45 @@ public class TemporaryIsland {
 	public List<Location> getDockLocations() {return this.docks;}
 
 	public void setDockLocations(List<Location> dockLocations) {this.docks = dockLocations;}
+
+	public Location getWaitCornerOne()
+	{
+		return this.waitCornerOne;
+	}
+
+	public void setWaitCornerOne(Location loc)
+	{
+		this.waitCornerOne = loc;
+	}
+
+	public Location getWaitCornerTwo()
+	{
+		return this.waitCornerTwo;
+	}
+
+	public void setWaitCornerTwo(Location loc)
+	{
+		this.waitCornerTwo = loc;
+	}
+
+	public Location getRespawnLoc()
+	{
+		return this.respawnLoc;
+	}
+
+	public void setRespawnLoc(Location loc)
+	{
+		this.respawnLoc = loc;
+	}
+
+
+	public List<Location> getLootContainers()
+	{
+		return this.lootContainers;
+	}
+
+	public void setLootContainers(List<Location> lootContainers)
+	{
+		this.lootContainers = lootContainers;
+	}
 }

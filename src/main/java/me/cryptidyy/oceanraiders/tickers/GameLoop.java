@@ -2,7 +2,6 @@ package me.cryptidyy.oceanraiders.tickers;
 
 import me.cryptidyy.oceanraiders.islands.Island;
 import me.cryptidyy.oceanraiders.state.EndState;
-import me.cryptidyy.oceanraiders.utility.VelocityUtil;
 import net.minecraft.server.v1_15_R1.*;
 import org.bukkit.*;
 import org.bukkit.Material;
@@ -10,7 +9,6 @@ import org.bukkit.Particle;
 import org.bukkit.block.Chest;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_15_R1.entity.CraftVehicle;
 import org.bukkit.entity.Boat;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
@@ -22,13 +20,10 @@ import me.cryptidyy.oceanraiders.Main;
 import me.cryptidyy.oceanraiders.islands.IslandManager;
 import me.cryptidyy.oceanraiders.player.PlayerManager;
 import me.cryptidyy.oceanraiders.state.GameManager;
-import me.cryptidyy.oceanraiders.state.GameState;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.util.Vector;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class GameLoop extends BukkitRunnable {
@@ -120,12 +115,17 @@ public class GameLoop extends BukkitRunnable {
 				{
 					this.scheduleEndParticle(manager.getRedTreasureDrop().getLocation());
 					
-					Bukkit.broadcastMessage("Red team won the game!");
+					//Bukkit.broadcastMessage("Red team won the game!");
 					manager.getTeamRed().getOnlinePlayers().forEach(uuid -> {
 						Bukkit.getPlayer(uuid).sendTitle(ChatColor.GOLD + "" + ChatColor.BOLD 
 								+ "VICTORY!", "You have won the game!", 5, 20 * 2, 20 * 1);
-						 
 					});
+
+					manager.getTeamBlue().getOnlinePlayers().forEach(uuid -> {
+						Bukkit.getPlayer(uuid).sendTitle(ChatColor.RED + "" + ChatColor.BOLD
+								+ "GAME OVER", "Red team has won the game.", 5, 20 * 2, 20 * 1);
+					});
+
 					item.remove();
 					manager.setState(new EndState());
 				}
@@ -142,11 +142,15 @@ public class GameLoop extends BukkitRunnable {
 				{
 					this.scheduleEndParticle(manager.getRedTreasureDrop().getLocation());
 					
-					Bukkit.broadcastMessage("Blue team won the game!");
+					//Bukkit.broadcastMessage("Blue team won the game!");
 					manager.getTeamBlue().getOnlinePlayers().forEach(uuid -> {
 						Bukkit.getPlayer(uuid).sendTitle(ChatColor.GOLD + "" + ChatColor.BOLD 
 								+ "VICTORY!", "You have won the game!", 5, 20 * 2, 20 * 1);
-						 
+					});
+
+					manager.getTeamRed().getOnlinePlayers().forEach(uuid -> {
+						Bukkit.getPlayer(uuid).sendTitle(ChatColor.RED + "" + ChatColor.BOLD
+								+ "GAME OVER", "Blue team has won the game.", 5, 20 * 2, 20 * 1);
 					});
 					
 					item.remove();

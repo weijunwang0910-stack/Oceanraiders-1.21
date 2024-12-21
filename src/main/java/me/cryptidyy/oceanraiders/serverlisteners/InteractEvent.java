@@ -33,6 +33,7 @@ public class InteractEvent implements Listener {
 		if(event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
 		if(!event.getClickedBlock().getType().isInteractable()) return;
 		if(event.getClickedBlock().getType() == Material.CHEST) return;
+		if(event.getClickedBlock().getType() == Material.BARREL) return;
 		if(event.getClickedBlock().getType() == Material.WATER) return;
 		
 		for(Material type : containsName("_DOOR"))

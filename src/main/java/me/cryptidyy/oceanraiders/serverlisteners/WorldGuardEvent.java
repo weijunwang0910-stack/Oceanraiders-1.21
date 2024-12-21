@@ -8,18 +8,16 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Item;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Vehicle;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
-import org.bukkit.event.player.PlayerItemConsumeEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.hanging.HangingBreakByEntityEvent;
+import org.bukkit.event.player.*;
 
 import me.cryptidyy.oceanraiders.Main;
 import me.cryptidyy.oceanraiders.player.PlayerManager;
@@ -38,7 +36,19 @@ public class WorldGuardEvent implements Listener {
 		this.plugin = plugin;
 		manager = plugin.getGameManager();
 	}
-	
+
+	@EventHandler
+	public void onFrameBreak(HangingBreakByEntityEvent event)
+	{
+		event.setCancelled(true);
+	}
+
+	@EventHandler
+	public void onMapBreak(EntityDamageByEntityEvent event)
+	{
+		if(event.getEntity() instanceof ItemFrame) event.setCancelled(true);
+	}
+
 	@EventHandler
 	public void onBreak(BlockBreakEvent event)
 	{
@@ -166,19 +176,19 @@ public class WorldGuardEvent implements Listener {
 		}, 1);
 	}
 	
-	@EventHandler
-	public void onAnvilDrop(EntitySpawnEvent event)
-	{
-		if(!(event.getEntity() instanceof Item)) return;
-		Item item = (Item) event.getEntity();
-		
-		if(item.getItemStack().getType().equals(Material.ANVIL))
-		{
-			event.setCancelled(true);
-		}
-		
-		
-	}
+//	@EventHandler
+//	public void onAnvilDrop(EntitySpawnEvent event)
+//	{
+//		if(!(event.getEntity() instanceof Item)) return;
+//		Item item = (Item) event.getEntity();
+//
+//		if(item.getItemStack().getType().equals(Material.ANVIL))
+//		{
+//			event.setCancelled(true);
+//		}
+//
+//
+//	}
 
 	public boolean isInRect(Location playerLoc, Location loc1, Location loc2)
 	{

@@ -39,6 +39,8 @@ public class DataConfigUtil {
 
 	public static Location readLocation(ConfigurationSection section)
 	{
+		if(section == null) return null;
+
 		return new Location(Main.getPlugin(Main.class).getGameManager().getGameWorld(),
 				section.getDouble("x"),
 				section.getDouble("y"),
@@ -47,13 +49,15 @@ public class DataConfigUtil {
 				(float) section.getDouble("pitch"));
 	}
 
-	public static List<Location> readLocationList(ConfigurationSection section)
-	{
+	public static List<Location> readLocationList(ConfigurationSection section) {
 		List<Location> result = new ArrayList<>();
 
-		for(String locationName : section.getKeys(false))
+		if(section != null)
 		{
-			result.add(readLocation(section.getConfigurationSection(locationName)));
+			for(String locationName : section.getKeys(false))
+			{
+				result.add(readLocation(section.getConfigurationSection(locationName)));
+			}
 		}
 
 		return result;

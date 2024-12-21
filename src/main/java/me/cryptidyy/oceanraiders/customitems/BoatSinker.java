@@ -7,11 +7,8 @@ import me.cryptidyy.oceanraiders.state.GameManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.FallingBlock;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Vehicle;
+import org.bukkit.Sound;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
@@ -41,7 +38,7 @@ public class BoatSinker extends OceanItem implements Listener {
 		
 		anvil.setInvulnerable(true);
 		anvil.setDropItem(false);
-		anvil.setVelocity(player.getLocation().getDirection().multiply(2));
+		anvil.setVelocity(player.getLocation().getDirection().multiply(1.5f));
 		
 		launchedAnvils.add(anvil);
 		
@@ -60,7 +57,7 @@ public class BoatSinker extends OceanItem implements Listener {
 			{
 				for(Entity target : currentAnvil.getNearbyEntities(4, 4, 4))
 				{
-					if(!currentAnvil.getBoundingBox().overlaps(target.getBoundingBox().clone().expand(0.5))) continue;
+					if(!currentAnvil.getBoundingBox().overlaps(target.getBoundingBox().clone().expand(1.2))) continue;
 					
 					Player hitPlayer = null;
 					
@@ -68,20 +65,32 @@ public class BoatSinker extends OceanItem implements Listener {
 					{
 						hitPlayer = (Player) target;
 						//Bukkit.broadcastMessage(player.getName() + " hit " + hitPlayer.getName() + " with an anvil!");
-						launchedAnvils.remove(anvil);
 						new BukkitRunnable()
 						{
 							@Override
 							public void run()
 							{
+								launchedAnvils.remove(anvil);
 								anvil.remove();
 							}
 
 						}.runTaskLater(Main.getPlugin(Main.class), 10);
+
+
 					}
-					else if(target instanceof Vehicle)
+					else if(target instanceof Boat)
 					{
-						if(!target.getType().equals(EntityType.BOAT)) continue;
+						new BukkitRunnable()
+						{
+							@Override
+							public void run()
+							{
+								launchedAnvils.remove(currentAnvil);
+								anvil.remove();
+							}
+
+						}.runTaskLater(Main.getPlugin(Main.class), 10);
+
 						if(!target.getPassengers().stream().anyMatch(passenger -> passenger instanceof Player)) continue;
 						
 						hitPlayer = (Player) target.getPassengers()
@@ -92,16 +101,6 @@ public class BoatSinker extends OceanItem implements Listener {
 						if(hitPlayer.getUniqueId().equals(player.getUniqueId()) || target.equals(player.getVehicle())) continue;
 
 						//Bukkit.broadcastMessage(player.getName() + " hit " + hitPlayer.getName() + "'s boat with an anvil!");
-						new BukkitRunnable()
-						{
-							@Override
-							public void run()
-							{
-								anvil.remove();
-							}
-
-						}.runTaskLater(Main.getPlugin(Main.class), 10);
-						launchedAnvils.remove(currentAnvil);
 					}
 					
 					if(hitPlayer == null) continue;
@@ -111,6 +110,7 @@ public class BoatSinker extends OceanItem implements Listener {
 					if(!hitPlayer.getUniqueId().equals(player.getUniqueId()))
 					{
 						hitPlayer.getVehicle().remove();
+						hitPlayer.getWorld().playSound(hitPlayer.getLocation(), Sound.BLOCK_ANVIL_HIT, 2, 1);
 
 						if(anvil != null)
 						{
@@ -120,11 +120,10 @@ public class BoatSinker extends OceanItem implements Listener {
 								public void run()
 								{
 									anvil.remove();
+									launchedAnvils.remove(currentAnvil);
 								}
 
 							}.runTaskLater(Main.getPlugin(Main.class), 10);
-
-							launchedAnvils.remove(currentAnvil);
 						}
 						sinkPlayer(hitPlayer);
 						continue;
@@ -139,7 +138,6 @@ public class BoatSinker extends OceanItem implements Listener {
 	public void onHitGround(EntityChangeBlockEvent event)
 	{
 		if(!launchedAnvils.contains(event.getEntity())) return;
-
 		event.getEntity().remove();
 		event.setCancelled(true);
 

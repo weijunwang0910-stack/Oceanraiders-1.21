@@ -72,7 +72,7 @@ public class ScoreboardTimer extends BukkitRunnable {
 		String secString = String.format("%02d", sec);
 		String minString = String.format("%02d", min);
 		
-		return new String(minString+":"+secString);	
+		return minString + ":" + secString;
 	}
 	
 	public void stop()

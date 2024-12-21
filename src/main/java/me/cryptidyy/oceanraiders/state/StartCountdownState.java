@@ -4,9 +4,7 @@ import me.cryptidyy.coreapi.api.API;
 import me.cryptidyy.oceanraiders.Main;
 import me.cryptidyy.oceanraiders.events.StateListenerProvider;
 import me.cryptidyy.oceanraiders.events.WaitingStateListenerProvider;
-import me.cryptidyy.oceanraiders.player.PlayerManager;
-import me.cryptidyy.oceanraiders.sql.QueueListener;
-import me.cryptidyy.oceanraiders.sql.ServerSQL;
+import me.cryptidyy.oceanraiders.lobbylisteners.OceanJoinHandler;
 import me.cryptidyy.oceanraiders.utility.ChatUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitTask;
@@ -15,9 +13,7 @@ public class StartCountdownState extends GameState {
 
     private GameManager manager;
     private BukkitTask countdown;
-
-    private QueueListener queueListener;
-
+    private OceanJoinHandler joinHandler;
     private int secUntilStart = 20;
 
     @Override
@@ -26,6 +22,8 @@ public class StartCountdownState extends GameState {
         super.onEnable(plugin);
 
         manager = plugin.getGameManager();
+        joinHandler = manager.getJoinHandler();
+        joinHandler.setListening(true);
         countdown = Bukkit.getScheduler().runTaskTimer(plugin, () -> {
 
             if(!manager.canGameStart()) manager.setState(new WaitingArenaState());
@@ -42,24 +40,17 @@ public class StartCountdownState extends GameState {
 
         API.getInstance().getStatusUpdater().setWaiting(true);
 
-        manager = plugin.getGameManager();
-        scheduleQueueListener();
 
         //ServerSQL.updateGameState("StartCountdownState");
     }
 
-    public void scheduleQueueListener()
-    {
-        queueListener = manager.getQueueListener();
-        queueListener.setListening(true);
-    }
     @Override
     public void onDisable()
     {
         super.onDisable();
         countdown.cancel();
-        API.getInstance().getStatusUpdater().setWaiting(false);
-        queueListener.setListening(false);
+
+        joinHandler.setListening(false);
     }
 
     @Override

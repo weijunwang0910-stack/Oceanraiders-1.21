@@ -44,6 +44,11 @@ public class SetupCommands implements CommandExecutor {
 					}
 					 
 					Optional<Island> optionalIsland = plugin.getIslandManager().findIsland(islandName);
+					if(optionalIsland.isPresent())
+					{
+						player.sendMessage(ChatColor.AQUA + "This island already exists, copying previous settings...");
+					}
+
 					TemporaryIsland tempIsland = optionalIsland
 							.map(TemporaryIsland::new)
 							.orElseGet(() -> new TemporaryIsland(islandName));

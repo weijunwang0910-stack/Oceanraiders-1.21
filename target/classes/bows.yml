@@ -1,20 +1,19 @@
 # TIPPED_ARROW:
-  # amount: Integer
-  # slot: Integer
-  # arroweffect: EFFECTNAME
-  # currency:
-    # material: MATERIAL
-    # price: Integer
-  # lore:
-   # - "line 1"
-   # - "line 2"
-   # ...
+# amount: Integer
+# slot: Integer
+# arroweffect: EFFECTNAME
+# damage: Integer
+# currency:
+# material: MATERIAL
+# price: Integer
+# lore:
+# - "line 1"
+# - "line 2"
+# ...
 globalsettings:
   lore:
     - "&7Use items here to archer your"
     - "&7opponent when they are far away."
-    - "&7Some items are better than others,"
-    - "&7but are also more expensive."
     - ""
   removedlore:
     - "&eLEFT CLICK to buy"
@@ -25,8 +24,10 @@ BOW:
     material: EMERALD
     price: 6
   lore:
-    - "&7Bows are ranged weapons that fire arrows."
-    - "&7They are good for hitting opponents from far away."
+    - ""
+    - "&7Bows are ranged weapons that"
+    - "&7fire arrows. They are good for hitting"
+    - "&7opponents from far away."
     - ""
 CROSSBOW:
   amount: 1
@@ -35,8 +36,9 @@ CROSSBOW:
     material: EMERALD
     price: 8
   lore:
-    - "&7Crossbows are similar to bows, and take longer to load"
-    - "&7but are slightly more powerful."
+    - ""
+    - "&7Crossbows are similar to bows,"
+    - "&7but they're slightly more powerful."
     - "&7Shoots farther with slightly higher accuracy."
     - ""
 ARROW:
@@ -46,6 +48,7 @@ ARROW:
     material: EMERALD
     price: 3
   lore:
+    - ""
     - "&7Ammo shot from bows or crossbows."
     - "&7Deals damage when hit opponent."
     - ""
@@ -53,13 +56,15 @@ TIPPED_ARROW:
   amount: 8
   slot: 22
   arroweffect: INSTANT_DAMAGE
+  displayname: Arrow of Harming
   currency:
     material: EMERALD
     price: 9
   lore:
+    - ""
     - "&7Ammo shot from bows or crossbows."
     - "&7Tipped with instant damage effect,"
-    - "&7Deals more damage than regular arrows."    
+    - "&7Deals more damage than regular arrows."
     - ""
 TRIDENT:
   amount: 3
@@ -68,9 +73,9 @@ TRIDENT:
     material: EMERALD
     price: 12
   lore:
-    - "&7Used by throwing, works well underwater."
     - ""
-    
-    
+    - "&7Used by throwing,"
+    - "&7works well underwater."
+    - ""
     
     

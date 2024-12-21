@@ -12,6 +12,8 @@ import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.inventory.meta.SuspiciousStewMeta;
 import org.bukkit.potion.PotionData;
@@ -75,6 +77,9 @@ public class ItemEntryManager {
 			if(section.getBoolean("persistent"))
 			{
 				item.setPersistent(true);
+				ItemMeta im = item.getItem().getItemMeta();
+				im.setUnbreakable(true);
+				item.setItemMeta(im);
 			}
 			itemEntriesArmor.add(item);
 		}
@@ -108,6 +113,9 @@ public class ItemEntryManager {
 			if(section.getBoolean("persistent"))
 			{
 				item.setPersistent(true);
+				ItemMeta im = item.getItem().getItemMeta();
+				im.setUnbreakable(true);
+				item.setItemMeta(im);
 			}
 			itemEntriesSword.add(item);
 		}
@@ -133,12 +141,17 @@ public class ItemEntryManager {
 			ItemStack currency = DataConfigUtil.getItemStack(section.getConfigurationSection("currency"));
 			int amount = section.getInt("amount");
 			int slot = section.getInt("slot");
+			int damage = section.getInt("damage");
 			String displayName = section.getString("displayname");
-			
+
 			if(!toMaterial(itemName).isPresent()) continue;
 			
 			String effectName = section.getString("arroweffect");
 			ItemStack is = new ItemStack(toMaterial(itemName).get(), amount);
+			Damageable meta = (Damageable) is.getItemMeta();
+			if(damage > 0) meta.setDamage(damage);
+
+			is.setItemMeta((ItemMeta) meta);
 			
 			if(toPotionType(effectName).isPresent())
 			{
@@ -151,6 +164,9 @@ public class ItemEntryManager {
 			if(section.getBoolean("persistent"))
 			{
 				item.setPersistent(true);
+				ItemMeta im = item.getItem().getItemMeta();
+				im.setUnbreakable(true);
+				item.setItemMeta(im);
 			}
 			itemEntriesBow.add(item);
 		}
@@ -198,6 +214,9 @@ public class ItemEntryManager {
 			if(section.getBoolean("persistent"))
 			{
 				item.setPersistent(true);
+				ItemMeta im = item.getItem().getItemMeta();
+				im.setUnbreakable(true);
+				item.setItemMeta(im);
 			}
 			itemEntriesFood.add(item);
 		}
@@ -280,6 +299,9 @@ public class ItemEntryManager {
 			if(section.getBoolean("persistent"))
 			{
 				item.setPersistent(true);
+				ItemMeta im = item.getItem().getItemMeta();
+				im.setUnbreakable(true);
+				item.setItemMeta(im);
 			}
 			
 			itemEntriesPotion.add(item);
@@ -362,6 +384,9 @@ public class ItemEntryManager {
 			if(section.getBoolean("persistent"))
 			{
 				item.setPersistent(true);
+				ItemMeta im = item.getItem().getItemMeta();
+				im.setUnbreakable(true);
+				item.setItemMeta(im);
 			}
 			
 			itemEntriesSplashPotion.add(item);
