@@ -100,6 +100,7 @@ me\cryptidyy\oceanraiders\tickers\GameLoop.class
 me\cryptidyy\oceanraiders\Main.class
 me\cryptidyy\oceanraiders\loot\LootTable.class
 me\cryptidyy\oceanraiders\customitems\BoatSinker$2.class
+me\cryptidyy\oceanraiders\lobbylisteners\PlayerDamage.class
 me\cryptidyy\oceanraiders\npcs\NPCShopManager.class
 me\cryptidyy\oceanraiders\islands\Island.class
 me\cryptidyy\oceanraiders\player\OceanPlayer$1.class

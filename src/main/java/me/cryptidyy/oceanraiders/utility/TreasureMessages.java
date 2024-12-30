@@ -12,7 +12,7 @@ public class TreasureMessages {
 
     private static final String treasureStolenHeader = ChatColor.WHITE + "" + ChatColor.BOLD + "TREASURE STOLEN > ";
     private static final String treasureReplacedHeader = ChatColor.WHITE + "" + ChatColor.BOLD + "TREASURE REPLACED > ";
-    private static final String treasureSwapHeader = org.bukkit.ChatColor.WHITE + "" + org.bukkit.ChatColor.BOLD + "TREASURE TRANSACTED > ";
+    private static final String treasureSwapHeader = org.bukkit.ChatColor.WHITE + "" + org.bukkit.ChatColor.BOLD + "TREASURE TRANSFERRED > ";
 
     public static String[] getStolenMessage(String teamName, boolean playSound)
     {

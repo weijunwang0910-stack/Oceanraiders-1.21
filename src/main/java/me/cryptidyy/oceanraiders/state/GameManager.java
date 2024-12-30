@@ -302,6 +302,7 @@ public class GameManager {
 		{
 			for(int i = 0; i < gameJoiners.size() - 1; i++)
 			{
+				if(gameJoiners.get(i).getParty() == null) return true;
 				if(!gameJoiners.get(i).getParty().getLeader().getUniqueId().equals(gameJoiners.get(i + 1).getParty().getLeader().getUniqueId()))
 				{
 					return true;
