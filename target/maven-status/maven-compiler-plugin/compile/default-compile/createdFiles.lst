@@ -48,6 +48,7 @@ me\cryptidyy\oceanraiders\events\StateListenerProvider.class
 me\cryptidyy\oceanraiders\shop\EnchantFamily.class
 me\cryptidyy\oceanraiders\utility\ChatUtil.class
 me\cryptidyy\oceanraiders\customitems\CustomItemUser.class
+me\cryptidyy\oceanraiders\gamemap\VoidGenerator.class
 me\cryptidyy\oceanraiders\player\OceanTeam.class
 me\cryptidyy\oceanraiders\activelisteners\IntrudeEvent.class
 me\cryptidyy\oceanraiders\activelisteners\OceanRejoinHandler.class

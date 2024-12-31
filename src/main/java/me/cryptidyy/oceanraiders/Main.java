@@ -121,6 +121,7 @@ public class Main extends JavaPlugin {
 		gameManager.onDisable();
 		HandlerList.unregisterAll(this);
 		API.getInstance().getStatusUpdater().setStarted(false);
+		API.getInstance().getStatusUpdater().setWaiting(false);
 	}
 
 	public IslandManager getIslandManager() {

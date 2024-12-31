@@ -36,7 +36,7 @@ public class LocalGameMap implements GameMap {
             return false;
         }
 
-        this.bukkitWorld = Bukkit.createWorld(new WorldCreator(activeWorldFolder.getName()));
+        this.bukkitWorld = Bukkit.createWorld(new WorldCreator(activeWorldFolder.getName()).generator(new VoidGenerator()));
 
         if(bukkitWorld != null) this.bukkitWorld.setAutoSave(false);
         return isLoaded();

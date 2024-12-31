@@ -113,6 +113,14 @@ public class OceanPlayer {
 			player.getInventory().setLeggings(new ItemBuilder(Material.LEATHER_LEGGINGS).setLeatherArmorColor(Color.BLUE).setInfinityDurability().toItemStack());
 			player.getInventory().setBoots(new ItemBuilder(Material.LEATHER_BOOTS).setLeatherArmorColor(Color.BLUE).setInfinityDurability().toItemStack());
 		}
+
+		player.sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "____________________________________________");
+		player.sendMessage(ChatColor.AQUA + "" + ChatColor.BOLD + "              Welcome to Oceanraiders!");
+		player.sendMessage(ChatColor.YELLOW + "How To Play:");
+		player.sendMessage(ChatColor.GRAY + "Get resources from the mines located across the bridge in the village. " +
+				"Buy/upgrade items from villagers to raid the other team for their treasure, which is located at the bottom of their mines. " +
+				"The first team to place the treasure in the podium across from the docks on their island wins!");
+		player.sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "____________________________________________");
 	}
 
 	public void killPlayer(Player killer, int respawnTimeInSeconds)
@@ -198,7 +206,7 @@ public class OceanPlayer {
 	public void respawnPlayer()
 	{
 		Player player = Bukkit.getPlayer(playerUUID);
-		
+		if(player == null) return;
 		List<ItemEntry> persistentItems = new ArrayList<>();
 		List<ItemEntry> entryInInventory = new ArrayList<>();
 		
