@@ -95,7 +95,7 @@ public class ScoreboardManager {
 					redTreasureLine,
 					blueTreasureLine,
 					"",
-					"&eCryptidyy & Diamonddrawer");
+					"&eThanks for playing!");
 			}
 				
 		);
