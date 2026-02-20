@@ -1,8 +1,8 @@
 main: me.cryptidyy.oceanraiders.Main
-name: OceanRaiders
+name: OceanRaiders-1.21
 version: 1.0
 author: cryptidyy
-api-version: 1.15
+api-version: 1.21
 
 depend: [CoreAPI, FriendsAPIForPartyAndFriends, Spigot-Party-API-PAF]
 

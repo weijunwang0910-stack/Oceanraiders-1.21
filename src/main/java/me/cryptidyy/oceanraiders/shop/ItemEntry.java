@@ -3,6 +3,7 @@ package me.cryptidyy.oceanraiders.shop;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.cryptidyy.oceanraiders.utility.ItemNames;
 import org.bukkit.ChatColor;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -10,7 +11,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import me.cryptidyy.oceanraiders.utility.ItemBuilder;
-import xyz.mackan.ItemNames.ItemNames;
 
 public class ItemEntry {
 

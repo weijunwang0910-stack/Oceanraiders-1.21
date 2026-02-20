@@ -15,7 +15,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import xyz.mackan.ItemNames.ItemNames;
 
 public abstract class InventoryShop implements Listener {
 
@@ -56,7 +55,7 @@ public abstract class InventoryShop implements Listener {
 			//only modify item in shop inventory, not in player inventory
 			if(shop.contains(entry.getItem()))
 			{
-				purchasedMeta.addEnchant(Enchantment.DURABILITY, 1, true);
+				purchasedMeta.addEnchant(Enchantment.UNBREAKING, 1, true);
 				purchasedMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 				purchasedMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 				

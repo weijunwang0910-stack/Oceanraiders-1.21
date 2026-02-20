@@ -1,10 +1,11 @@
 package me.cryptidyy.oceanraiders.npcs;
 
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-import net.minecraft.server.v1_15_R1.Entity;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 
 public class ClickNPC implements Listener {
 	
@@ -16,26 +17,29 @@ public class ClickNPC implements Listener {
 	}
 	
 	@EventHandler
-	public void onClick(OpenShopEvent event)
+	public void onClick(PlayerInteractEntityEvent event)
 	{
 		Player player = event.getPlayer();
+		Entity villager = event.getRightClicked(); //entity type doesn't matter
 		
-		Entity villager = event.getNpc();
-		
-		if(villager.getCustomName().getString().contains("BLACKSMITH"))
+		if(villager.getCustomName().contains("BLACKSMITH"))
 		{
+			event.setCancelled(true);
 			player.openInventory(manager.getBlacksmithShop(player).getArmorShop());
 		}
-		else if(villager.getCustomName().getString().contains("LIBRARIAN"))
+		else if(villager.getCustomName().contains("LIBRARIAN"))
 		{
+			event.setCancelled(true);
 			player.openInventory(manager.getEnchantShop(player).getEnchantInv());
 		}
-		else if(villager.getCustomName().getString().contains("FARMER"))
+		else if(villager.getCustomName().contains("FARMER"))
 		{
+			event.setCancelled(true);
 			player.openInventory(manager.getFoodShop(player).getFoodShop());
 		}
-		else if(villager.getCustomName().getString().contains("POTION"))
+		else if(villager.getCustomName().contains("POTION"))
 		{
+			event.setCancelled(true);
 			player.openInventory(manager.getPotionShop(player).getDrinkingShop());
 		}
 		

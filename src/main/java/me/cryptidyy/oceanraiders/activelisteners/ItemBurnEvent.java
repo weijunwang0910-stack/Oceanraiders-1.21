@@ -12,7 +12,7 @@ public class ItemBurnEvent implements Listener {
 	@EventHandler
 	public void onEntityDamage(EntityDamageEvent event) 
 	{
-		if(event.getEntity().getType() != EntityType.DROPPED_ITEM) return;
+		if(event.getEntity().getType() != EntityType.ITEM) return;
 		
 		Item droppedItem = (Item) event.getEntity();
 		

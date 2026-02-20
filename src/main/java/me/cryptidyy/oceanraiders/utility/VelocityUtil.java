@@ -1,7 +1,5 @@
 package me.cryptidyy.oceanraiders.utility;
 
-import net.minecraft.server.v1_15_R1.EntityBoat;
-import net.minecraft.server.v1_15_R1.EntityPotion;
 import org.bukkit.util.Vector;
 
 public class VelocityUtil {

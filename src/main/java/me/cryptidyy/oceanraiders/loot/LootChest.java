@@ -3,6 +3,7 @@ package me.cryptidyy.oceanraiders.loot;
 import java.util.Arrays;
 import java.util.UUID;
 
+import me.cryptidyy.oceanraiders.utility.Hologram;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -10,7 +11,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import me.cryptidyy.oceanraiders.Main;
-import me.cryptidyy.oceanraiders.utility.Hologram;
 import me.cryptidyy.oceanraiders.utility.Timer;
 import net.md_5.bungee.api.ChatColor;
 
@@ -47,7 +47,7 @@ public class LootChest {
 		this.index = index;
 		this.chestName = chestName;
 		
-		hologram = new Hologram(chestLoc, "default hologram");
+		hologram = new Hologram(chestLoc, "default hologram", manager.getPlugin());
 		generateInv(manager.getGenerateTimes());
 	}
 	

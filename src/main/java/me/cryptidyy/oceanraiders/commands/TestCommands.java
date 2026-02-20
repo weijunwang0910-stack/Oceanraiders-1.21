@@ -13,11 +13,9 @@ import org.bukkit.inventory.ItemStack;
 
 import me.cryptidyy.oceanraiders.Main;
 import me.cryptidyy.oceanraiders.customitems.OceanItem;
-import me.cryptidyy.oceanraiders.npcs.PacketReader;
 
 public class TestCommands implements CommandExecutor {
-	
-	private PacketReader reader;
+
 	private Main plugin;
 	
 	//private List<LootChest> lootChests = new ArrayList<>();

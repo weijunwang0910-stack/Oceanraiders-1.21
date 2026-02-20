@@ -157,7 +157,6 @@ public class OceanPlayer {
 			Bukkit.getPlayer(uuid).hidePlayer(plugin, player);
 		});
 
-		GameNPCSetupManager.unRegisterPlayer(player);
 		RespawnEvent.addPlayer(player);
 
 		//Respawn the player
@@ -172,7 +171,6 @@ public class OceanPlayer {
 				{
 					respawnTask.cancel();
 					player.getInventory().setContents(contents);
-					GameNPCSetupManager.registerPlayer(player);
 					RespawnEvent.removePlayer(player);
 
 					plugin.getGameManager().getPlayingPlayers().forEach(uuid -> {
@@ -290,7 +288,7 @@ public class OceanPlayer {
 	{
 		Player player = Bukkit.getPlayer(playerUUID);
 		
-		manager.getTargetTeam().removePlayer(player);
+		manager.getTargetTeam().removeEntry(player.getName());
 		player.getInventory().clear();
 		player.setGlowing(false);
 		

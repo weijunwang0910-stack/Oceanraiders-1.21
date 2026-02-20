@@ -72,7 +72,7 @@ public class ImmunityMilk extends OceanItem implements Listener {
 			event.setIntensity(player, 0);
 			
 			//player.sendMessage("You blocked a splash potion!");
-			player.spawnParticle(Particle.REDSTONE, player.getLocation().clone().add(0,0,0), 50, 0.5d, 2d, 0.5d, 20,
+			player.spawnParticle(Particle.ELECTRIC_SPARK, player.getLocation().clone().add(0,0,0), 50, 0.5d, 2d, 0.5d, 20,
 					new Particle.DustOptions(Color.WHITE, 2));
 			
 		}

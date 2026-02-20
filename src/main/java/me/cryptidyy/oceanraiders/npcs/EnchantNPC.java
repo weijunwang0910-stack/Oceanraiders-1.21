@@ -2,27 +2,29 @@ package me.cryptidyy.oceanraiders.npcs;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.Villager.Profession;
 
-import net.minecraft.server.v1_15_R1.ChatComponentText;
-import net.minecraft.server.v1_15_R1.EntityTypes;
-import net.minecraft.server.v1_15_R1.EntityVillager;
+public class EnchantNPC {
 
-public class EnchantNPC extends EntityVillager {
-
-	public EnchantNPC(Location loc) 
+	private final Villager NPC;
+	public EnchantNPC(Location loc)
 	{
-		super(EntityTypes.VILLAGER, ((CraftWorld)loc.getWorld()).getHandle());
-		
-		Villager villager = (Villager) this.getBukkitEntity();
-		this.setPosition(loc.getX(), loc.getY(), loc.getZ());
-		this.setNoAI(true);
-		this.setCustomName(new ChatComponentText(ChatColor.YELLOW + "LIBRARIAN"));
-		this.setCustomNameVisible(true);
-		this.setInvulnerable(true);
-		villager.setProfession(Profession.LIBRARIAN);
-		villager.setRotation(loc.getYaw(), loc.getPitch());
+		NPC = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
+
+		NPC.setAI(false);
+		NPC.setCustomName(ChatColor.YELLOW + "LIBRARIAN");
+		NPC.setCustomNameVisible(true);
+		NPC.setInvulnerable(true);
+
+		NPC.setRotation(loc.getYaw(), loc.getPitch());
+		NPC.setProfession(Profession.LIBRARIAN);
+
+	}
+
+	public Villager getNPC()
+	{
+		return NPC;
 	}
 }

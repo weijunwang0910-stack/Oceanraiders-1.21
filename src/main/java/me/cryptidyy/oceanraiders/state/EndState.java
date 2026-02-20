@@ -34,8 +34,6 @@ public class EndState extends GameState {
                 PlayerManager.toOceanPlayer(player).resetPlayer(manager);
         });
 
-        manager.getBoardManager().hide();
-
         GameNPCSetupManager npcSetupManager = new GameNPCSetupManager(plugin);
         npcSetupManager.unSetNPCs();
 

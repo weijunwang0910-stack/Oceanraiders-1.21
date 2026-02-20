@@ -9,8 +9,5 @@
         <module name="oceanraiders" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Oceanraiders" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

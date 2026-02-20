@@ -105,7 +105,7 @@ public class FlyingTrident extends BukkitRunnable implements Listener {
 		{
 			flyingTrident.remove();
 			particles.clear();
-			newTargetLocation.getWorld().spawnParticle(Particle.TOTEM, newTargetLocation, 50, 1D, 1D, 1D, 0, null, true);
+			newTargetLocation.getWorld().spawnParticle(Particle.TOTEM_OF_UNDYING, newTargetLocation, 50, 1D, 1D, 1D, 0, null, true);
 			
 			Location teleportLoc = newTargetLocation.clone();
 			teleportLoc.setYaw(sourcePlayer.getLocation().getYaw());

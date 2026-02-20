@@ -59,21 +59,12 @@ public class OceanRejoinHandler extends RejoinHandler {
 
         PlayerManager.toOceanPlayer(member).killPlayer(null,10);
 
-        //Register player again
-        try
-        {
-            GameNPCSetupManager.registerPlayer(member);
-        }
-        catch(Exception e)
-        {
-
-        }
         if(!manager.getPlayingPlayers().contains(member.getUniqueId()))
             manager.getPlayingPlayers().add(member.getUniqueId());
 
         //PlayerManager.toOceanPlayer(player).respawnPlayer();
 
-        manager.getBoardManager().addPlayer(member.getUniqueId());
+        manager.getBoardManager().addPlayer(member);
         LootChestManager.allLootChests
                 .stream()
                 .filter(chest -> chest.getUUID().equals(member.getUniqueId()))

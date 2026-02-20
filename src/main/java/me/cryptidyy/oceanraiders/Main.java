@@ -133,25 +133,7 @@ public class Main extends JavaPlugin {
 	public OceanItemManager getItemManager() {
 		return itemManager;
 	}
-//	private void connectToSQL()
-//	{
-//		try
-//		{
-//			SQL.connect();
-//		}
-//		catch (ClassNotFoundException | SQLException e)
-//		{
-//			//Login info incorrect
-//			//not using database
-//
-//			Bukkit.getLogger().info("Database not connected!");
-//		}
-//
-//		if(SQL.isConnected())
-//		{
-//			Bukkit.getLogger().info("Database is connected!");
-//		}
-//	}
+
 	private void checkIfBungee()
 	{
 		if (!getServer().spigot().getConfig().getConfigurationSection("settings").getBoolean("bungeecord"))

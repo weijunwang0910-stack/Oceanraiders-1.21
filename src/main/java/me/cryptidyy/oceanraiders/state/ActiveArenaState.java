@@ -4,12 +4,12 @@ import me.cryptidyy.coreapi.api.API;
 import me.cryptidyy.oceanraiders.Main;
 import me.cryptidyy.oceanraiders.activelisteners.OceanRejoinHandler;
 import me.cryptidyy.oceanraiders.events.*;
+import me.cryptidyy.oceanraiders.scoreboard.GameScoreboardManager;
 import me.cryptidyy.oceanraiders.tickers.GameLoop;
 import me.cryptidyy.oceanraiders.npcs.GameNPCSetupManager;
 import me.cryptidyy.oceanraiders.islands.Island;
 import me.cryptidyy.oceanraiders.loot.LootChestManager;
 import me.cryptidyy.oceanraiders.player.PlayerManager;
-import me.cryptidyy.oceanraiders.scoreboard.ScoreboardManager;
 import me.cryptidyy.oceanraiders.shop.EnchantManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -19,6 +19,7 @@ import org.bukkit.block.Chest;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.Team;
 
 import java.util.Arrays;
 
@@ -46,12 +47,14 @@ public class ActiveArenaState extends GameState {
 
         GameNPCSetupManager npcSetupManager = new GameNPCSetupManager(plugin);
 
-        manager.setBoardManager(new ScoreboardManager(plugin, manager.getPlayingPlayers()));
+        manager.setBoardManager(new GameScoreboardManager(plugin, manager.getPlayingPlayers()));
         manager.getBoardManager().show();
 
         manager.getBoardManager().makeTeams(manager.getTeamRed().getPlayers(), manager.getTeamBlue().getPlayers());
 
-        manager.setTargetTeam(manager.getBoardManager().getScoreboard().createTeam("Target", "", ChatColor.GREEN));
+        Team targetTeam = manager.getBoardManager().getScoreboard().registerNewTeam("Target");
+        targetTeam.setColor(ChatColor.GREEN);
+        manager.setTargetTeam(targetTeam);
 
         manager.getPlayingPlayers().forEach(uuid -> {
             manager.getEnchantManagers().put(uuid, new EnchantManager(plugin));

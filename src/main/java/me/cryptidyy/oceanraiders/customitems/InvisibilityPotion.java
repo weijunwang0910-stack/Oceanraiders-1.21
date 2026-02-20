@@ -5,21 +5,13 @@ import me.cryptidyy.oceanraiders.player.OceanTeam;
 import me.cryptidyy.oceanraiders.player.PlayerManager;
 import me.cryptidyy.oceanraiders.state.GameManager;
 import me.cryptidyy.oceanraiders.utility.ChatUtil;
-import net.minecraft.server.v1_15_R1.EnumItemSlot;
-import net.minecraft.server.v1_15_R1.IMaterial;
-import net.minecraft.server.v1_15_R1.PacketPlayOutEntityEquipment;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_15_R1.entity.CraftItem;
-import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_15_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityPotionEffectEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -96,36 +88,12 @@ public class InvisibilityPotion extends OceanItem implements Listener {
         OceanTeam opponentTeam = PlayerManager.toOceanPlayer(target).getPlayerTeam().getTeamName().contains("Red") ?
                 manager.getTeamBlue() : manager.getTeamRed();
 
-        PacketPlayOutEntityEquipment showHeadPacket
-                = new PacketPlayOutEntityEquipment(
-                        target.getEntityId(),
-                EnumItemSlot.HEAD,
-                CraftItemStack.asNMSCopy(target.getInventory().getHelmet()));
-        PacketPlayOutEntityEquipment showChestPacket
-                = new PacketPlayOutEntityEquipment(
-                target.getEntityId(),
-                EnumItemSlot.CHEST,
-                CraftItemStack.asNMSCopy(target.getInventory().getChestplate()));
-        PacketPlayOutEntityEquipment showLegsPacket
-                = new PacketPlayOutEntityEquipment(
-                target.getEntityId(),
-                EnumItemSlot.LEGS,
-                CraftItemStack.asNMSCopy(target.getInventory().getLeggings()));
-        PacketPlayOutEntityEquipment showFeetPacket
-                = new PacketPlayOutEntityEquipment(
-                target.getEntityId(),
-                EnumItemSlot.FEET,
-                CraftItemStack.asNMSCopy(target.getInventory().getBoots()));
-
         hideArmorTask.cancel();
 
         for(UUID opponentID : opponentTeam.getOnlinePlayers())
         {
             Player opponent = Bukkit.getPlayer(opponentID);
-            ((CraftPlayer) opponent).getHandle().playerConnection.networkManager.sendPacket(showHeadPacket);
-            ((CraftPlayer) opponent).getHandle().playerConnection.networkManager.sendPacket(showChestPacket);
-            ((CraftPlayer) opponent).getHandle().playerConnection.networkManager.sendPacket(showLegsPacket);
-            ((CraftPlayer) opponent).getHandle().playerConnection.networkManager.sendPacket(showFeetPacket);
+            opponent.showPlayer(manager.getPlugin(), target);
         }
 
         if(wasTargetGlowing)
@@ -142,42 +110,11 @@ public class InvisibilityPotion extends OceanItem implements Listener {
         OceanTeam opponentTeam = PlayerManager.toOceanPlayer(target).getPlayerTeam().getTeamName().contains("Red") ?
                 manager.getTeamBlue() : manager.getTeamRed();
 
-        PacketPlayOutEntityEquipment hideHeadPacket
-                = new PacketPlayOutEntityEquipment(
-                        target.getEntityId(),
-                EnumItemSlot.HEAD,
-                CraftItemStack.asNMSCopy(new ItemStack(Material.AIR)));
-        PacketPlayOutEntityEquipment hideChestPacket
-                = new PacketPlayOutEntityEquipment(
-                target.getEntityId(),
-                EnumItemSlot.CHEST,
-                CraftItemStack.asNMSCopy(new ItemStack(Material.AIR)));
-        PacketPlayOutEntityEquipment hideLegsPacket
-                = new PacketPlayOutEntityEquipment(
-                target.getEntityId(),
-                EnumItemSlot.LEGS,
-                CraftItemStack.asNMSCopy(new ItemStack(Material.AIR)));
-        PacketPlayOutEntityEquipment hideFeetPacket
-                = new PacketPlayOutEntityEquipment(
-                target.getEntityId(),
-                EnumItemSlot.FEET,
-                CraftItemStack.asNMSCopy(new ItemStack(Material.AIR)));
-
-        //target.sendMessage("You are hidden!");
-
-        //testing
-        hideArmorTask = Bukkit.getScheduler()
-            .runTaskTimer(Main.getPlugin(Main.class), () -> {
-                for(UUID opponentID : opponentTeam.getOnlinePlayers())
-                {
-                    Player opponent = Bukkit.getPlayer(opponentID);
-                    ((CraftPlayer) opponent).getHandle().playerConnection.networkManager.sendPacket(hideHeadPacket);
-                    ((CraftPlayer) opponent).getHandle().playerConnection.networkManager.sendPacket(hideChestPacket);
-                    ((CraftPlayer) opponent).getHandle().playerConnection.networkManager.sendPacket(hideLegsPacket);
-                    ((CraftPlayer) opponent).getHandle().playerConnection.networkManager.sendPacket(hideFeetPacket);
-                }
-
-            }, 0, 1);
+        for(UUID opponentID : opponentTeam.getOnlinePlayers())
+        {
+            Player opponent = Bukkit.getPlayer(opponentID);
+            opponent.hidePlayer(manager.getPlugin(), target);
+        }
 
         wasTargetGlowing = target.isGlowing();
 

@@ -97,7 +97,7 @@ public class OceanItemManager {
 					item.setCurrency(currency);
 					item.setInventoryName(inventoryName);
 					
-					item.getMeta().addEnchant(Enchantment.DURABILITY, 1, true);
+					item.getMeta().addEnchant(Enchantment.UNBREAKING, 1, true);
 					item.getMeta().getItemFlags().add(ItemFlag.HIDE_ATTRIBUTES);
 					
 					oceanItems.add(item);
@@ -138,7 +138,7 @@ public class OceanItemManager {
 					PotionEffect invis = new PotionEffect(PotionEffectType.INVISIBILITY, 45 * 20, 1);
 					meta.addCustomEffect(invis, true);
 					meta.setColor(PotionEffectType.INVISIBILITY.getColor());
-					meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+					meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
 					item.getItem().setItemMeta(meta);
 

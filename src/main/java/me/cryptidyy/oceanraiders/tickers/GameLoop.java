@@ -2,13 +2,10 @@ package me.cryptidyy.oceanraiders.tickers;
 
 import me.cryptidyy.oceanraiders.islands.Island;
 import me.cryptidyy.oceanraiders.state.EndState;
-import net.minecraft.server.v1_15_R1.*;
 import org.bukkit.*;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.block.Chest;
-import org.bukkit.craftbukkit.v1_15_R1.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.Boat;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
@@ -232,7 +229,7 @@ public class GameLoop extends BukkitRunnable {
 					dy = 2 * Math.exp(-0.05 * t) * Math.sin(t) + 1;
 					dz = t * Math.sin(theta);
 					
-					treasureLoc.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, 
+					treasureLoc.getWorld().spawnParticle(Particle.FIREWORK,
 							treasureLoc.clone().add(dx,dy,dz), 0);
 				}
 
@@ -242,7 +239,7 @@ public class GameLoop extends BukkitRunnable {
 					dy = 2 * Math.exp(-0.05 * t) * Math.sin(t) + 1;
 					dz = t * Math.sin(theta);
 
-					treasureLoc.getWorld().spawnParticle(Particle.BLOCK_DUST,
+					treasureLoc.getWorld().spawnParticle(Particle.BLOCK_CRUMBLE,
 							treasureLoc.clone().add(dx,dy,dz), 0, Material.LIGHT_BLUE_CONCRETE_POWDER.createBlockData());
 				}
 
@@ -261,11 +258,11 @@ public class GameLoop extends BukkitRunnable {
 
 			@Override
 			public void run() {
-				loc1.getWorld().spawnParticle(Particle.REDSTONE, 
+				loc1.getWorld().spawnParticle(Particle.DUST,
 						loc1.clone().add(0,1.2,0), amount, 1d, 1d, 1d, 1,
 						new Particle.DustOptions(Color.RED, 1), true);
 				
-				loc2.getWorld().spawnParticle(Particle.REDSTONE, 
+				loc2.getWorld().spawnParticle(Particle.DUST,
 						loc2.clone().add(0,1.2,0), amount, 1d, 1d, 1d, 1,
 						new Particle.DustOptions(Color.BLUE, 1), true);
 				
@@ -320,13 +317,6 @@ public class GameLoop extends BukkitRunnable {
 
 	private void alignBoat(Player passenger, Location dockLocation)
 	{
-		EntityPlayer entityPlayer = ((CraftPlayer) passenger).getHandle();
 
-		net.minecraft.server.v1_15_R1.Entity boat = ((CraftEntity)passenger.getVehicle()).getHandle();
-		boat.yaw = dockLocation.getYaw();
-
-		PacketPlayOutVehicleMove vehicleMovePacket = new PacketPlayOutVehicleMove(boat);
-
-		entityPlayer.playerConnection.networkManager.sendPacket(vehicleMovePacket);
 	}
 }

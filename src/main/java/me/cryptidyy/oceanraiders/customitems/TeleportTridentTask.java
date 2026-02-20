@@ -1,20 +1,13 @@
 package me.cryptidyy.oceanraiders.customitems;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-
-import dev.jcsoftware.jscoreboards.JScoreboardTeam;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.Team;
 import org.bukkit.util.RayTraceResult;
-
-import com.mojang.authlib.GameProfile;
 
 import me.cryptidyy.oceanraiders.Main;
 import me.cryptidyy.oceanraiders.player.PlayerManager;
-import me.cryptidyy.oceanraiders.utility.NMSHelper;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 
@@ -29,7 +22,7 @@ public class TeleportTridentTask extends BukkitRunnable {
 	private OceanItemManager itemManager;
 	private OceanItem teleportTrident;
 	
-	private JScoreboardTeam targetTeam;
+	private Team targetTeam;
 	
 	private String oldTargetName;
 	private String oldPlayerName;
@@ -47,7 +40,7 @@ public class TeleportTridentTask extends BukkitRunnable {
 
 	}
 	
-	private JScoreboardTeam oldTeam;
+	private Team oldTeam;
 	
 	@Override
 	public void run() 
@@ -96,7 +89,7 @@ public class TeleportTridentTask extends BukkitRunnable {
 			oldTeam = plugin.getGameManager().getBoardManager().findTeam(target);
 
 			//Before target
-			if(!targetTeam.getEntities().contains(target.getUniqueId()))
+			if(!targetTeam.getEntries().contains(target.getName()))
 			{
 				isTargetAlreadyGlowing = target.isGlowing();
 				
@@ -148,32 +141,9 @@ public class TeleportTridentTask extends BukkitRunnable {
 		return this.target;
 	}
 	
-	public JScoreboardTeam getTargetTeam()
+	public Team getTargetTeam()
 	{
 		return this.targetTeam;
-	}
-	
-	public void setPlayerName(String name, Player target)
-	{
-		try 
-		{
-			GameProfile profile = NMSHelper.getProfile(target);
-			Field field = profile.getClass().getDeclaredField("name");
-			field.setAccessible(true);
-			field.set(profile, name);
-			field.setAccessible(false);
-			
-			for(Player player : Bukkit.getOnlinePlayers())
-			{
-				player.hidePlayer(plugin, target);
-				player.showPlayer(plugin, target);
-			}
-			
-		} 
-		catch (NoSuchFieldException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException e) 
-		{
-			e.printStackTrace();
-		}
 	}
 	
 	double erf(double x)

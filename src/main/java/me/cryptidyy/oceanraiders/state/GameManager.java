@@ -2,28 +2,22 @@ package me.cryptidyy.oceanraiders.state;
 
 import de.simonsator.partyandfriends.spigot.api.pafplayers.PAFPlayer;
 import de.simonsator.partyandfriends.spigot.api.pafplayers.PAFPlayerManager;
-import de.simonsator.partyandfriends.spigot.api.party.PlayerParty;
-import dev.jcsoftware.jscoreboards.JScoreboardTeam;
-import me.cryptidyy.coreapi.api.API;
 import me.cryptidyy.coreapi.api.GameJoiner;
 import me.cryptidyy.oceanraiders.Main;
 import me.cryptidyy.oceanraiders.activelisteners.OceanRejoinHandler;
 import me.cryptidyy.oceanraiders.customitems.OceanItemManager;
 import me.cryptidyy.oceanraiders.lobbylisteners.OceanJoinHandler;
+import me.cryptidyy.oceanraiders.scoreboard.GameScoreboardManager;
 import me.cryptidyy.oceanraiders.sql.OceanQueueListener;
 import me.cryptidyy.oceanraiders.tickers.GameLoop;
-import me.cryptidyy.oceanraiders.npcs.GameNPCSetupManager;
 import me.cryptidyy.oceanraiders.player.OceanTeam;
 import me.cryptidyy.oceanraiders.islands.IslandManager;
 import me.cryptidyy.oceanraiders.loot.LootChestManager;
 import me.cryptidyy.oceanraiders.npcs.NPCShopManager;
-import me.cryptidyy.oceanraiders.player.PlayerManager;
 import me.cryptidyy.oceanraiders.scoreboard.HealthBar;
-import me.cryptidyy.oceanraiders.scoreboard.ScoreboardManager;
 import me.cryptidyy.oceanraiders.shop.EnchantManager;
 import me.cryptidyy.oceanraiders.shop.ItemEntryManager;
 import me.cryptidyy.oceanraiders.utility.ItemBuilder;
-import me.cryptidyy.oceanraiders.utility.PlayerRollbackManager;
 import org.bukkit.*;
 import org.bukkit.block.Chest;
 import org.bukkit.enchantments.Enchantment;
@@ -31,8 +25,8 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scoreboard.Team;
 
-import java.io.File;
 import java.util.*;
 
 public class GameManager {
@@ -49,10 +43,10 @@ public class GameManager {
 	private OceanTeam teamBlue = new OceanTeam("Blue Team");
 	private List<GameJoiner> gameJoiners = new ArrayList<>();
 
-	private ScoreboardManager boardManager;
+	private GameScoreboardManager boardManager;
 	private final HealthBar HEALTH_BAR = new HealthBar();
 	private NPCShopManager shopManager = new NPCShopManager();
-	private JScoreboardTeam targetTeam;
+	private Team targetTeam;
 
 	private LootChestManager lootChestManager;
 	private IslandManager islandManager;
@@ -87,14 +81,14 @@ public class GameManager {
 
 		this.redTreasure = new ItemBuilder(Material.HEART_OF_THE_SEA)
 				.setName(ChatColor.RED + "Red Treasure")
-				.addEnchant(Enchantment.DURABILITY, 1)
+				.addEnchant(Enchantment.UNBREAKING, 1)
 				.addItemFlags(ItemFlag.HIDE_ENCHANTS)
 				.addLoreLine(ChatColor.AQUA + "The treasure that's desired by every Raider")
 				.toItemStack();
 
 		this.blueTreasure = new ItemBuilder(Material.HEART_OF_THE_SEA)
 				.setName(ChatColor.BLUE + "Blue Treasure")
-				.addEnchant(Enchantment.DURABILITY, 1)
+				.addEnchant(Enchantment.UNBREAKING, 1)
 				.addItemFlags(ItemFlag.HIDE_ENCHANTS)
 				.addLoreLine(ChatColor.AQUA + "The treasure that's desired by every Raider")
 				.toItemStack();
@@ -165,7 +159,6 @@ public class GameManager {
 		{
 			Bukkit.broadcastMessage(ChatColor.WHITE + player.getName() + ChatColor.GRAY + " has quit.");
 			playingPlayers.remove(player.getUniqueId());
-			GameNPCSetupManager.unRegisterPlayer(player);
 
 			//remove player from their team
 			this.getBoardManager().removePlayerFromAllTeams(player);
@@ -190,7 +183,6 @@ public class GameManager {
 			//{
 				//Player player = Bukkit.getPlayer(uuid);
 			lobbyPlayers.remove(player.getUniqueId());
-				GameNPCSetupManager.unRegisterPlayer(player);
 
 				if(teamRed.getPlayers().contains(player.getUniqueId()))
 				{
@@ -394,12 +386,12 @@ public class GameManager {
 		return enchantManagers;
 	}
 
-	public ScoreboardManager getBoardManager()
+	public GameScoreboardManager getBoardManager()
 	{
 		return this.boardManager;
 	}
 
-	public void setBoardManager(ScoreboardManager manager)
+	public void setBoardManager(GameScoreboardManager manager)
 	{
 		this.boardManager = manager;
 	}
@@ -414,12 +406,12 @@ public class GameManager {
 		return this.teamBlue;
 	}
 
-	public JScoreboardTeam getTargetTeam()
+	public Team getTargetTeam()
 	{
 		return this.targetTeam;
 	}
 
-	public void setTargetTeam(JScoreboardTeam team)
+	public void setTargetTeam(Team team)
 	{
 		this.targetTeam = team;
 	}
@@ -538,5 +530,10 @@ public class GameManager {
 	public OceanRejoinHandler getRejoinHandler()
 	{
 		return this.rejoinHandler;
+	}
+
+	public Main getPlugin()
+	{
+		return plugin;
 	}
 }

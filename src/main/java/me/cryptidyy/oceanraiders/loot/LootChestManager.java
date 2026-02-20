@@ -231,5 +231,9 @@ public class LootChestManager {
 	{
 		return genericLootContainers;
 	}
+	public Main getPlugin()
+	{
+		return plugin;
+	}
 
 }

@@ -4,14 +4,12 @@ me\cryptidyy\oceanraiders\customitems\ImmunityMilk.class
 me\cryptidyy\oceanraiders\activelisteners\ItemBurnEvent.class
 me\cryptidyy\oceanraiders\customitems\TeleportTridentTask.class
 me\cryptidyy\oceanraiders\activelisteners\QuitEvent.class
+me\cryptidyy\oceanraiders\scoreboard\GameScoreboardManager.class
 me\cryptidyy\oceanraiders\customitems\ImmunityMilk$1.class
-me\cryptidyy\oceanraiders\scoreboard\ScoreboardManager.class
 me\cryptidyy\oceanraiders\utility\PluginMessenger.class
 me\cryptidyy\oceanraiders\tickers\GameLoop$2.class
-me\cryptidyy\oceanraiders\utility\NMSHelper.class
 me\cryptidyy\oceanraiders\lobbylisteners\LobbyQuitEvent.class
 me\cryptidyy\oceanraiders\utility\Timer.class
-me\cryptidyy\oceanraiders\npcs\OpenShopEvent.class
 me\cryptidyy\oceanraiders\player\OceanPlayer.class
 me\cryptidyy\oceanraiders\shop\PotionShop.class
 me\cryptidyy\oceanraiders\loot\LootRefresher.class
@@ -31,9 +29,9 @@ me\cryptidyy\oceanraiders\activelisteners\PlayerAttackEvent.class
 me\cryptidyy\oceanraiders\lobbylisteners\OceanJoinHandler.class
 me\cryptidyy\oceanraiders\state\GameManager.class
 me\cryptidyy\oceanraiders\state\EndState.class
+me\cryptidyy\oceanraiders\scoreboard\ScoreboardManager1.class
 me\cryptidyy\oceanraiders\shop\ItemEntryManager.class
 me\cryptidyy\oceanraiders\player\TransferedItemsManager.class
-me\cryptidyy\oceanraiders\npcs\PacketReader$1.class
 me\cryptidyy\oceanraiders\sql\SQLHelper.class
 me\cryptidyy\oceanraiders\activelisteners\ItemEvents.class
 me\cryptidyy\oceanraiders\customitems\InvisibilityPotion.class
@@ -42,6 +40,7 @@ me\cryptidyy\oceanraiders\customitems\OceanItemType.class
 me\cryptidyy\oceanraiders\customitems\FirePlacer.class
 me\cryptidyy\oceanraiders\customitems\OceanItemManager.class
 me\cryptidyy\oceanraiders\activelisteners\TreasureDropEvent$1.class
+me\cryptidyy\oceanraiders\utility\ItemNames.class
 me\cryptidyy\oceanraiders\serverlisteners\WorldGuardEvent.class
 me\cryptidyy\oceanraiders\activelisteners\TreasureTransactionEvent.class
 me\cryptidyy\oceanraiders\events\StateListenerProvider.class
@@ -83,7 +82,7 @@ me\cryptidyy\oceanraiders\customitems\OceanItem.class
 me\cryptidyy\oceanraiders\state\WaitingArenaState.class
 me\cryptidyy\oceanraiders\utility\ItemBuilder.class
 me\cryptidyy\oceanraiders\shop\EnchantManager.class
-me\cryptidyy\oceanraiders\utility\Hologram$IChatBaseComponent.class
+me\cryptidyy\oceanraiders\utility\Hologram1$IChatBaseComponent.class
 me\cryptidyy\oceanraiders\commands\TestCommands.class
 me\cryptidyy\oceanraiders\npcs\BlackSmithNPC.class
 me\cryptidyy\oceanraiders\loot\LootChest.class
@@ -92,7 +91,7 @@ me\cryptidyy\oceanraiders\shop\FoodShop.class
 me\cryptidyy\oceanraiders\customitems\CobwebWall.class
 me\cryptidyy\oceanraiders\shop\InventoryShop.class
 me\cryptidyy\oceanraiders\customitems\FlyingTrident.class
-me\cryptidyy\oceanraiders\scoreboard\ScoreboardManager$1.class
+me\cryptidyy\oceanraiders\utility\Hologram1.class
 me\cryptidyy\oceanraiders\shop\EnchantShop.class
 me\cryptidyy\oceanraiders\activelisteners\RemoveHelmetEvent.class
 me\cryptidyy\oceanraiders\customitems\BoatSinker$3.class
@@ -105,12 +104,13 @@ me\cryptidyy\oceanraiders\lobbylisteners\PlayerDamage.class
 me\cryptidyy\oceanraiders\npcs\NPCShopManager.class
 me\cryptidyy\oceanraiders\islands\Island.class
 me\cryptidyy\oceanraiders\player\OceanPlayer$1.class
-me\cryptidyy\oceanraiders\npcs\PacketReader.class
 me\cryptidyy\oceanraiders\loot\Entry.class
 me\cryptidyy\oceanraiders\activelisteners\InvisWalkEvent.class
+me\cryptidyy\oceanraiders\scoreboard\ScoreboardManager1$1.class
 me\cryptidyy\oceanraiders\npcs\FoodNPC.class
 me\cryptidyy\oceanraiders\commands\GameCommands.class
 me\cryptidyy\oceanraiders\loot\LootChestManager.class
+me\cryptidyy\oceanraiders\scoreboard\GameScoreboardManager$1.class
 me\cryptidyy\oceanraiders\activelisteners\TreasureEvent.class
 me\cryptidyy\oceanraiders\customitems\TeleportTrident.class
 me\cryptidyy\oceanraiders\customitems\BoatSinker.class

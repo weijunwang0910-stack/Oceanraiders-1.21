@@ -43,9 +43,9 @@ public class PotionShop extends InventoryShop implements Listener {
 		new ItemBuilder(Material.GRAY_STAINED_GLASS_PANE).setName(" ").toItemStack(),
 		new ItemBuilder(Material.SPLASH_POTION)
 			.setName(ChatColor.RESET + "Splash Potions")
-			.setPotionMeta(PotionType.INSTANT_DAMAGE)
-			.addEnchant(Enchantment.DURABILITY, 1)
-			.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS)
+			.setPotionMeta(PotionType.HARMING)
+			.addEnchant(Enchantment.UNBREAKING, 1)
+			.addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
 			.addItemFlags(ItemFlag.HIDE_ENCHANTS)
 			.addItemFlags(ItemFlag.HIDE_ATTRIBUTES).setName("Splash Potions")
 			.setLore("", ChatColor.YELLOW + "Click to view!")
@@ -174,10 +174,9 @@ public class PotionShop extends InventoryShop implements Listener {
 			splashShop.setItem(slot, item);
 			
 			splashShop.setItem(4, new ItemBuilder(Material.POTION).setName(ChatColor.RESET + "Normal Potions")
-					.setPotionMeta(PotionType.INSTANT_HEAL)
-					.addEnchant(Enchantment.DURABILITY, 1)
+					.setPotionMeta(PotionType.HEALING)
+					.addEnchant(Enchantment.UNBREAKING, 1)
 					.addItemFlags(ItemFlag.HIDE_ENCHANTS)
-					.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS)
 					.addItemFlags(ItemFlag.HIDE_ATTRIBUTES)
 					.setLore("", ChatColor.YELLOW + "Click to view!")
 					.toItemStack());

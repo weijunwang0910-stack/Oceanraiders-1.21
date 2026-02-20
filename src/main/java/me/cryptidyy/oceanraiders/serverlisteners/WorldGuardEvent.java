@@ -2,12 +2,10 @@ package me.cryptidyy.oceanraiders.serverlisteners;
 
 import me.cryptidyy.oceanraiders.state.GameManager;
 import me.cryptidyy.oceanraiders.utility.ChatUtil;
-import net.minecraft.server.v1_15_R1.WorldServer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,7 +13,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.player.*;
 
@@ -55,7 +52,7 @@ public class WorldGuardEvent implements Listener {
 		if(event.getPlayer().isOp() && !manager.isStarted()) return;
 
 		if(event.getBlock().getType().equals(Material.TALL_GRASS)) return;
-		if(event.getBlock().getType().equals(Material.GRASS)) return;
+		if(event.getBlock().getType().equals(Material.GRASS_BLOCK)) return;
 		if(event.getBlock().getType().equals(Material.FERN)) return;
 		if(event.getBlock().getType().equals(Material.LARGE_FERN)) return;
 		

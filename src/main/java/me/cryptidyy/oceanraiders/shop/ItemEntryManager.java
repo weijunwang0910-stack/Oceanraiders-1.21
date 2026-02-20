@@ -285,7 +285,7 @@ public class ItemEntryManager {
 					potionMeta.setColor(effectType.getColor());
 
 					potionMeta.addCustomEffect(effect, true);
-					potionMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+					potionMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 				}
 				
 				potionItem.setItemMeta(potionMeta);
@@ -372,7 +372,7 @@ public class ItemEntryManager {
 					potionMeta.setColor(effectType.getColor());
 
 					potionMeta.addCustomEffect(effect, true);
-					potionMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+					potionMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 				}
 				
 				potionItem.setItemMeta(potionMeta);

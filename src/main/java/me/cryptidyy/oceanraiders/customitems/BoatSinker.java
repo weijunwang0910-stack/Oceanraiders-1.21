@@ -105,7 +105,7 @@ public class BoatSinker extends OceanItem implements Listener {
 					
 					if(hitPlayer == null) continue;
 					if(!hitPlayer.isInsideVehicle()) continue;
-					if(!hitPlayer.getVehicle().getType().equals(EntityType.BOAT)) continue;
+					if(!hitPlayer.getVehicle().getType().toString().contains("BOAT")) continue;
 					
 					if(!hitPlayer.getUniqueId().equals(player.getUniqueId()))
 					{
